@@ -2,3 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities'; 
 
+* {
+  box-sizing: border-box;
+}
+
+/* Helper classes */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
