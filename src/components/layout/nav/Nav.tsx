@@ -11,12 +11,10 @@ export default function Nav() {
         </Link>
 
         <Link href='my-catalog' className='flex flex-row items-center'>
-          {/* <CatalogIcon /> */}
           <p className='whitespace-nowrap ml-2'>My Catalog</p>
         </Link>
 
         <Link href='explore' className='flex flex-row items-center'>
-          {/* <ExploreIcon /> */}
           <p className='whitespace-nowrap ml-2'>Explore</p>
         </Link>
 

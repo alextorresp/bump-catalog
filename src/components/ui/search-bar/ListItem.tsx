@@ -1,4 +1,4 @@
-import { SearchType, FormValuesType } from '@/utils/types';
+import { SearchType } from '@/utils/types';
 
 type ListItemProps = {
   key: string;
