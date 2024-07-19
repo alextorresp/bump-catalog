@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import SearchBar from '@/components/ui/search-bar/SearchBar';
-import ExploreIcon from '@/components/icons/explore-icon';
-import CatalogIcon from '@/components/icons/catalog-icon';
 
 export default function Nav() {
   return (
@@ -12,12 +10,12 @@ export default function Nav() {
           <Image alt='' src='/bump-logo.png' width={100} height={100}></Image>
         </Link>
 
-        <Link href='my-catalog' className='flex flex-row items-center '>
+        <Link href='my-catalog' className='flex flex-row items-center'>
           {/* <CatalogIcon /> */}
           <p className='whitespace-nowrap ml-2'>My Catalog</p>
         </Link>
 
-        <Link href='explore' className='flex flex-row items-center '>
+        <Link href='explore' className='flex flex-row items-center'>
           {/* <ExploreIcon /> */}
           <p className='whitespace-nowrap ml-2'>Explore</p>
         </Link>
