@@ -30,7 +30,7 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <form className='border rounded-full pr-3 border-black flex flex-row w-1/3 h-8 items-center'>
+    <form className='border rounded-full pr-3 border-black flex flex-row w-1/3 h-full items-center'>
       <label className='sr-only' htmlFor='searchInput'></label>
       <input 
         id='searchInput'
@@ -46,7 +46,7 @@ export default function SearchBar() {
       <label className='sr-only' htmlFor='searchType'></label>
       <div
         id='searchType'
-        className='relative border-r border-l border-black min-h-full flex items-center justify-center min-w-[90px]'
+        className='relative border-r border-l border-black min-h-full flex items-center justify-center min-w-[90px] border-dashed'
         aria-expanded={isDropdownOpen}
         aria-haspopup='listbox'
       >
