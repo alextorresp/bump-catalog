@@ -6,11 +6,31 @@
   box-sizing: border-box;
 }
 
+html { 
+  font-size: 16px; 
+}
+
+h2 {
+  font-size: clamp(16px, 1.5vw, 18px);
+  font-style: italic;
+}
+
+p, .responsive-text, ::placeholder {
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
 /* Helper classes */
 .container {
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 

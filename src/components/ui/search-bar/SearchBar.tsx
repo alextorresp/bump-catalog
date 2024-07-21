@@ -46,7 +46,7 @@ export default function SearchBar() {
       <label className='sr-only' htmlFor='searchType'></label>
       <div
         id='searchType'
-        className='relative border-r border-l border-black min-h-full flex items-center justify-center min-w-[90px] border-dashed'
+        className='relative min-h-full flex items-center justify-center min-w-[93px]'
         aria-expanded={isDropdownOpen}
         aria-haspopup='listbox'
       >
@@ -54,14 +54,14 @@ export default function SearchBar() {
           type='button'
           aria-label='Search category'
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className='px-3 flex flex-row items-center gap-[5px]'
+          className='flex flex-row items-center justify-center text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full'
         >
           {formValues.searchType}
           <ToggleIcon isDropdownOpen={isDropdownOpen}/>
         </button>
 
         {isDropdownOpen && (
-          <ul role='listbox' className='absolute top-[30px] border rounded-b-xl border-black bg-white w-full overflow-hidden'>
+          <ul role='listbox' className='absolute top-[25px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
             {['All', 'Songs', 'Albums', 'Artists'].map((type) => (
               <ListItem 
                 key={type} 

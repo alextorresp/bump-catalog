@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import Nav from '@/components/layout/nav/Nav';
 import './globals.css';
-import { Fragment } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'BUMP Catelog',
-  description: 'Create your personal music catelog and share with friends.',
+  title: 'BUMP',
+  description: 'Create and share your own musical mood board',
 };
 
 export default function RootLayout({
@@ -18,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${inter.className}`}>
+      <body className={`${jakarta.className}`}>
         <Nav />
         {children}
       </body>

@@ -15,7 +15,7 @@ export default function ListItem({ key, value, isSelected, handleDropdownChange 
       role='option'
       aria-selected={isSelected}
       onClick={() => handleDropdownChange(value)}
-      className={`cursor-pointer hover:bg-gray-200 py-0.5 px-2.5 ${isSelected ? 'bg-orange-200' : ''}`}
+      className={`cursor-pointer hover:bg-gray-200 py-0.5 responsive-text px-2.5 ${isSelected ? 'bg-orange-200' : ''}`}
     >
       {value}
     </li>
