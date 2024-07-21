@@ -7,7 +7,7 @@ export default function Explore() {
     <main className='container'>
       <div className='centered-column border border-black border-dashed rounded-2xl py-12 px-4'>
         <Image src='/explore.png' alt='' width={500} height={150} className=''/>
-        <h2 className='mt-8 mb-8 text-center italic'>Search for your favorite albums, songs, or artists</h2>
+        <h2 className='mt-8 mb-5 text-center italic'>Search for your favorite albums, songs, or artists</h2>
         <SearchBar />
       </div>
       <div className='flex flex-col justify-start w-full mt-10 '>
