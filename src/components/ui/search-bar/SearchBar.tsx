@@ -30,7 +30,7 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <form className='border rounded-full pr-3 border-black flex flex-row w-1/3 h-full items-center'>
+    <form className='border rounded-full border-black flex flex-row w-[600px] h-[40px] items-center'>
       <label className='sr-only' htmlFor='searchInput'></label>
       <input 
         id='searchInput'
@@ -40,13 +40,13 @@ export default function SearchBar() {
         required
         value={formValues.searchInput}
         onChange={handleFormChange}
-        className='pl-3 h-full rounded-l-full flex flex-grow w-3/4 focus:outline-none'
+        className='h-full pl-4 rounded-l-full flex flex-grow w-3/4 focus:outline-none'
       />
 
       <label className='sr-only' htmlFor='searchType'></label>
       <div
         id='searchType'
-        className='relative min-h-full flex items-center justify-center min-w-[93px]'
+        className='relative h-full flex items-center justify-center min-w-[93px]'
         aria-expanded={isDropdownOpen}
         aria-haspopup='listbox'
       >
@@ -54,15 +54,15 @@ export default function SearchBar() {
           type='button'
           aria-label='Search category'
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className='flex flex-row items-center justify-center text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full'
+          className='flex flex-row items-center justify-center h-full text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full'
         >
           {formValues.searchType}
           <ToggleIcon isDropdownOpen={isDropdownOpen}/>
         </button>
 
         {isDropdownOpen && (
-          <ul role='listbox' className='absolute top-[25px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
-            {['All', 'Songs', 'Albums', 'Artists'].map((type) => (
+          <ul role='listbox' className='absolute top-[39px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
+            {['Albums', 'All', 'Artists', 'Songs'].map((type) => (
               <ListItem 
                 key={type} 
                 value={type as SearchType}
@@ -74,7 +74,7 @@ export default function SearchBar() {
         )}
       </div>
 
-      <button type='submit' aria-label='Submit search' className='h-full flex items-center pl-2'>
+      <button type='submit' aria-label='Submit search' className='h-full flex items-center pl-3 pr-4'>
         <SearchIcon />
       </button>
     </form>
