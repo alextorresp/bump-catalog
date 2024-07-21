@@ -30,7 +30,7 @@ export default function SearchBar() {
   }, []);
 
   return (
-    <form className='border rounded-full border-black flex flex-row w-[600px] h-[40px] items-center'>
+    <form className='border rounded-full border-black flex flex-row sm:w-[600px] sm:h-[40px] w-[100%] h-[30px] items-center'>
       <label className='sr-only' htmlFor='searchInput'></label>
       <input 
         id='searchInput'
@@ -46,7 +46,7 @@ export default function SearchBar() {
       <label className='sr-only' htmlFor='searchType'></label>
       <div
         id='searchType'
-        className='relative h-full flex items-center justify-center min-w-[93px]'
+        className='relative h-full flex items-center justify-center sm:min-w-[93px] min-w-[78px]'
         aria-expanded={isDropdownOpen}
         aria-haspopup='listbox'
       >
@@ -61,7 +61,7 @@ export default function SearchBar() {
         </button>
 
         {isDropdownOpen && (
-          <ul role='listbox' className='absolute top-[39px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
+          <ul role='listbox' className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
             {['Albums', 'All', 'Artists', 'Songs'].map((type) => (
               <ListItem 
                 key={type} 
