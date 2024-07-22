@@ -62,11 +62,11 @@ type ChartArtist = {
   type: string;
 };
 
-interface ChartArtistWithPosition extends ChartArtist {
+export interface ChartArtistWithPosition extends ChartArtist {
   position: number;
 };
 
-interface ChartAlbum extends AlbumSummary {
+export interface ChartAlbum extends AlbumSummary {
   link: Url;
   record_type: string;
   explicit_lyrics: boolean;
@@ -75,7 +75,7 @@ interface ChartAlbum extends AlbumSummary {
   type: string;
 };
 
-type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
+export type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
   position: number;
   artist: ChartArtist;
 };

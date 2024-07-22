@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Nav() {
   return (
-    <header className='mb-5 pt-5 container '>
+    <header className='mb-7 pt-5 container '>
       <nav className='w-full flex flex-row items-center justify-between gap-5 rounded-xl border border-black py-[13px] px-5 h-14'>
         <Link href='/' className='me-auto'>
           <Image alt='' src='/bump-logo.png' width={100} height={100}></Image>
