@@ -1,6 +1,7 @@
 export default function Home() {
   return (
-    <main className=''>
+    <main className='container'>
+      <p>Home Page</p>
     </main>
   );
 };

@@ -1,5 +1,5 @@
 export type IconProps = {
-  classNames: string;
+  classNames?: string;
 };
 
 export type SearchType = 'All' | 'Artists' | 'Songs' | 'Albums';

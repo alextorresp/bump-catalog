@@ -26,6 +26,10 @@ p, .responsive-text, ::placeholder {
   font-size: clamp(14px, 1.5vw, 17px);
 }
 
+.button-text {
+  font-size: clamp(13px, 1.5vw, 15px);
+}
+
 /* Helper classes */
 .container {
   margin-left: auto;
