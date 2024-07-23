@@ -11,6 +11,7 @@ export default async function getChartData<T>( chartType: ChartType ): Promise<T
     };
 
     const data = await response.json() as T;
+      
     return data;
 
   } catch (error) {

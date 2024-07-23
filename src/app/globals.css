@@ -22,6 +22,10 @@ p, .responsive-text, ::placeholder {
   font-size: clamp(14px, 1.5vw, 16px);
 }
 
+.card-title {
+  font-size: clamp(14px, 1.5vw, 17px);
+}
+
 /* Helper classes */
 .container {
   margin-left: auto;

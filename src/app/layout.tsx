@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${jakarta.className}`}>
+      <body className={`${jakarta.className} mb-[120px]`}>
         <Nav />
         {children}
       </body>

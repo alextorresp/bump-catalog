@@ -13,13 +13,13 @@ export default function Explore() {
         <h2 className='mt-8 mb-5 text-center italic'>Search for your favorite albums, songs, or artists</h2>
         <SearchBar />
       </div>
-      <div className='flex flex-col justify-start w-full mt-8 '>
-        <h3 className='font-bold mb-2'>Trending Albums</h3>
-        <AlbumChartRow />
-        <h3 className='font-bold mt-6 mb-2'>Trending Songs</h3>
+      <div className='justify-start min-w-fit mt-8 overflow-hidden'>
+        <h3 className='font-bold mb-2'>Trending Songs</h3>
         <TrackChartRow />
         <h3 className='font-bold mt-6 mb-2'>Trending Artists</h3>
         <ArtistChartRow />
+        <h3 className='font-bold mt-6 mb-2'>Trending Albums</h3>
+        <AlbumChartRow />
       </div>
     </main>
   )
