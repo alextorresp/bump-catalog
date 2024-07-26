@@ -21,6 +21,10 @@ export default function Nav() {
           <p className='whitespace-nowrap'>My Wall</p>
         </Link>
 
+        <Link href='/' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed'>
+          <p className='whitespace-nowrap'>My Wishlist</p>
+        </Link>
+
         <Link href='/my-calendar' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed'>
           <p className='whitespace-nowrap'>My Calendar</p>
         </Link>
