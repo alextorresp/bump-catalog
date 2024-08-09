@@ -9,6 +9,8 @@ export type FormValuesType = {
   searchType: SearchType;
 };
 
+export type ChartType = 'artists' | 'albums' | 'tracks';
+
 type Url = string;
 
 interface AlbumSummary {

@@ -1,4 +1,4 @@
-export type ChartType = 'artists' | 'albums' | 'tracks';
+import { ChartType } from '@/utils/types';
 
 export default async function getChartData<T>( chartType: ChartType ): Promise<T | null> {
   try {
