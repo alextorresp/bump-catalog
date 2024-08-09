@@ -4,12 +4,11 @@ import AddIcon from '@/components/icons/AddIcon';
 
 type AlbumChartCardProps = {
   album: ChartAlbum;
-  key?: number;
 }
 
-export default function AlbumChartCard({ album, key }: AlbumChartCardProps) {
+export default function AlbumChartCard({ album }: AlbumChartCardProps) {
   return (
-    <div key={key} className='group relative w-[250px] text-slate-100 rounded-xl p-6 overflow-hidden flex flex-col justify-between gap-1'>
+    <div className='group relative w-[250px] text-slate-100 rounded-xl p-6 overflow-hidden flex flex-col justify-between gap-1'>
       <div className='w-full'>
         <Image 
           src={album.cover_xl} 
