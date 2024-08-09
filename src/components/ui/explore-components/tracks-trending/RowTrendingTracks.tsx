@@ -1,10 +1,9 @@
 import { TrackChartList } from '@/utils/types';
 import getChartData from '@/api/getChartData';
 
-export default async function TrackChartRow() {
+export default async function RowTrendingTracks() {
   const response = await getChartData<TrackChartList | null>('tracks');
 
-  
 
   if (!response || !response.data) return <p>Sorry, please try again in a few minutes.</p>;
 

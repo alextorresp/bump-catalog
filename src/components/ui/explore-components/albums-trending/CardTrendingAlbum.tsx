@@ -2,11 +2,11 @@ import { ChartAlbum } from '@/utils/types';
 import Image from 'next/image';
 import AddIcon from '@/components/icons/AddIcon';
 
-type AlbumChartCardProps = {
+type Props = {
   album: ChartAlbum;
-}
+};
 
-export default function AlbumChartCard({ album }: AlbumChartCardProps) {
+export default function CardTrendingAlbum({ album }: Props) {
   return (
     <div className='group relative w-[250px] text-slate-100 rounded-xl p-6 overflow-hidden flex flex-col justify-between gap-1'>
       <div className='w-full'>
