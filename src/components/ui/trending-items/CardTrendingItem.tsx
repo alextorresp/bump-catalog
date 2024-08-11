@@ -15,9 +15,9 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
   };
 
   return (
-    <div className='group relative w-[250px] text-slate-100 rounded-xl p-6 overflow-hidden flex flex-col justify-between gap-1'>
+    <div className='group relative text-slate-100 rounded-xl p-6 overflow-hidden flex flex-col justify-between gap-1'>
       {album && (
-        <div w-full>
+        <div className='w-full'>
           <Image 
             src={album.cover_xl} 
             alt=''
@@ -27,7 +27,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           </Image>
           <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'>
           </div>
-          <div className='absolute w-full h-1/2 rounded-xl top-[0] left-0 -z-10 border border-dashed border-black'>
+          <div className='absolute w-full h-3/4 rounded-t-xl top-[0] left-0 -z-10 border-t border-l border-r border-dashed border-black'>
           </div>
           <Image 
             src={album.cover_xl} 
@@ -42,7 +42,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
       )}
 
       {artist && (
-        <div w-full>
+        <div className='w-full'>
           <Image 
             src={artist.picture_xl} 
             alt=''
@@ -52,7 +52,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           </Image>
           <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'>
           </div>
-          <div className='absolute w-full h-1/2 rounded-xl top-[0] left-0 -z-10 border border-dashed border-black'>
+          <div className='absolute w-full h-3/4 rounded-t-xl top-[0] left-0 -z-10 border-t border-l border-r border-dashed border-black'>
           </div>
           <Image 
             src={artist.picture_xl} 
@@ -61,12 +61,12 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
             height={250}
           >
           </Image>
-          <p className='max-w-full font-semibold mt-6 card-title'>{artist.name}</p>
+          <p className='max-w-full font-semibold mt-6 mb-4 card-title'>{artist.name}</p>
         </div>
       )}
 
       {track && (
-        <div w-full>
+        <div className='w-full'>
           <Image 
             src={track.album.cover_xl} 
             alt=''
@@ -76,7 +76,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           </Image>
           <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'>
           </div>
-          <div className='absolute w-full h-1/2 rounded-xl top-[0] left-0 -z-10 border border-dashed border-black'>
+          <div className='absolute w-full h-3/4 rounded-t-xl top-[0] left-0 -z-10 border-t border-l border-r border-dashed border-black'>
           </div>
           <Image 
             src={track.album.cover_xl} 
@@ -89,7 +89,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           <p className='text-slate-200 mt-0.5 font-extralight mb-3'>{track.artist.name}</p>
         </div>
       )}
-      <AddIcon classNames='w-[20px] bg-white'/>
+      {/* <AddIcon classNames='w-[20px] bg-white ml-auto'/> */}
     </div>
   )
 };

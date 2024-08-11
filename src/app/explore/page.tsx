@@ -10,12 +10,12 @@ export default function Explore() {
         <h2 className='mt-8 mb-5 text-center italic'>Search for your favorite albums, songs, or artists</h2>
         <SearchBar />
       </div>
-      <div className='justify-start min-w-fit mt-8 overflow-hidden'>
-        <h3 className='font-bold mb-2'>Trending Songs</h3>
+      <div className='justify-start w-full mt-8 overflow-visible'>
+        <h3 className='font-bold mb-4'>Trending Songs</h3>
         <RowTrendingItems chartType='tracks' />
-        <h3 className='font-bold mt-6 mb-2'>Trending Artists</h3>
+        <h3 className='font-bold mt-10 mb-4'>Trending Artists</h3>
         <RowTrendingItems chartType='artists' />
-        <h3 className='font-bold mt-6 mb-2'>Trending Albums</h3>
+        <h3 className='font-bold mt-10 mb-4  '>Trending Albums</h3>
         <RowTrendingItems chartType='albums' />
       </div>
     </main>

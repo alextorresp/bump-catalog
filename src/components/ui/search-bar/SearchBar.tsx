@@ -17,7 +17,7 @@ export default function SearchBar() {
     setFormValues((prev) => ({
       ...prev,
       [event.target.name]: event.target.value
-    }))
+    }));
   };
 
   // Wrap the function in useCallback to avoid unecessary re-renders of the child component ListItem
@@ -57,11 +57,11 @@ export default function SearchBar() {
           className='flex flex-row items-center justify-center h-full text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full'
         >
           {formValues.searchType}
-          <ToggleIcon isDropdownOpen={isDropdownOpen}/>
+          <ToggleIcon className={`transition-all ${isDropdownOpen ? 'rotate-90' : ''}`} height='12' fill='black'/>
         </button>
 
         {isDropdownOpen && (
-          <ul role='listbox' className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden'>
+          <ul role='listbox' className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden z-10'>
             {['Albums', 'All', 'Artists', 'Songs'].map((type) => (
               <ListItem 
                 key={type} 
