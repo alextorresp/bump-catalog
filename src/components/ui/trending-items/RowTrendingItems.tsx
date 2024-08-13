@@ -31,9 +31,24 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
   const chartData = response.data;
 
   return (
-    <div className='w-full h-fit relative flex flex-col overflow-hidden'>
-      <div className='flex flex-col'>
-        <div className='flex flex-row gap-5 w-full overflow-x-hidden relative rounded-xl z-10'>
+    <div className='w-full relative flex flex-row overflow-hidden'>
+      <div className='flex flex-col w-full'>
+        {/* <div className='w-[3%] h-full bg-black mr-4'>
+
+        </div> */}
+
+        <div className='w-full mb-5'>
+          <div className='h-full w-full flex items-center justify-between border border-black py-1 rounded-md px-2'>
+            <ToggleIcon height='15' className='rotate-180' fill='black'/>
+            <div className='flex gap-2'>
+              <div className='w-6 h-[3px] border border-black rounded-sm'></div>
+              <div className='w-6 h-[3px] bg-black rounded-sm'></div>
+            </div>
+            <ToggleIcon height='15' className='' fill='black'/>
+          </div>
+        </div>
+        
+        <div className='flex flex-row w-full overflow-x-hidden relative rounded-xl z-10 gap-4'>
             {chartData.map((item) => (
               <div className='min-w-[20%] flex' key={uuidv4()}>
                 <CardTrendingItem
@@ -47,8 +62,13 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
 
           </div>
         </div>
-        <div className='w-full mt-4'>
-          <div className='h-full w-full flex items-center justify-between border border-dashed border-black py-1 rounded-md px-2'>
+
+        {/* <div className='w-[3%] h-full bg-black ml-4'>
+
+        </div> */}
+
+        {/* <div className='w-full mt-4'>
+          <div className='h-full w-full flex items-center justify-center gap-4 border border-dashed border-black py-1 rounded-md px-2'>
             <ToggleIcon height='17' className='rotate-180' fill='black'/>
             <div className='flex gap-2'>
               <div className='w-6 h-[3px] bg-black rounded-sm'></div>
@@ -56,7 +76,7 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
             </div>
             <ToggleIcon height='17' className='' fill='black'/>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

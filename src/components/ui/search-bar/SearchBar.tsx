@@ -29,8 +29,10 @@ export default function SearchBar() {
     setIsDropdownOpen(false);
   }, []);
 
+  // sm:w-[600px] sm:h-[40px] w-[100%]
+
   return (
-    <form className='border rounded-full border-black flex flex-row sm:w-[600px] sm:h-[40px] w-[100%] h-[30px] items-center'>
+    <form className='border rounded-xl border-black flex flex-row w-full h-[45px] items-center'>
       <label className='sr-only' htmlFor='searchInput'></label>
       <input 
         id='searchInput'
