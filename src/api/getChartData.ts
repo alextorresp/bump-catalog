@@ -1,6 +1,7 @@
 import { ChartType } from '@/utils/types';
+import { ApiChartObject } from '@/utils/types';
 
-export default async function getChartData<T>( chartType: ChartType ): Promise<T | null> {
+export default async function getChartData<T>( chartType: ChartType ): Promise<ApiChartObject<T> | null> {
   try {
     const response = await fetch(`https://api.deezer.com/chart/0/${chartType}`, {
       next: { revalidate:  60 * 60 * 24 }
@@ -10,7 +11,7 @@ export default async function getChartData<T>( chartType: ChartType ): Promise<T
       throw new Error(`HTTP error! status: ${response.status}`);
     };
 
-    const data = await response.json() as T;
+    const data: ApiChartObject<T> = await response.json();
       
     return data;
 

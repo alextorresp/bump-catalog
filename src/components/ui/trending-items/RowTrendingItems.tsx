@@ -1,24 +1,22 @@
 import getChartData from '@/api/getChartData';
-import { AlbumChartList, ArtistChartList, TrackChartList, ChartType, ChartAlbum, ChartArtistWithPosition, ChartTrack } from '@/utils/types';
+import { ChartType, ChartAlbum, ChartArtistWithPosition, ChartTrack } from '@/utils/types';
 import CardTrendingItem from './CardTrendingItem';
 import { v4 as uuidv4 } from 'uuid';
 import ToggleIcon from '@/components/icons/ToggleIcon';
-
-
-type ChartItemsList = AlbumChartList | ArtistChartList | TrackChartList;
+import { ApiChartObject } from '@/utils/types';
 
 export default async function RowTrendingItems({ chartType }: { chartType: ChartType }) {
-  let response: ChartItemsList | null = null;
+  let response: ApiChartObject<ChartTrack[] | ChartAlbum[] | ChartArtistWithPosition[]> | null = null;
 
   switch (chartType) {
     case 'albums':
-      response = await getChartData<AlbumChartList>(chartType);
+      response = await getChartData<ChartAlbum[]>(chartType);
       break;
     case 'artists':
-      response = await getChartData<ArtistChartList>(chartType);
+      response = await getChartData<ChartArtistWithPosition[]>(chartType);
       break;
     case 'tracks':
-      response = await getChartData<TrackChartList>(chartType);
+      response = await getChartData<ChartTrack[]>(chartType);
       break;
     default:
       throw new Error('Invalid chart type');
@@ -33,10 +31,6 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
   return (
     <div className='w-full relative flex flex-row overflow-hidden'>
       <div className='flex flex-col w-full'>
-        {/* <div className='w-[3%] h-full bg-black mr-4'>
-
-        </div> */}
-
         <div className='w-full mb-5'>
           <div className='h-full w-full flex items-center justify-between border border-black py-1 rounded-md px-2'>
             <ToggleIcon height='15' className='rotate-180' fill='black'/>
@@ -62,21 +56,6 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
 
           </div>
         </div>
-
-        {/* <div className='w-[3%] h-full bg-black ml-4'>
-
-        </div> */}
-
-        {/* <div className='w-full mt-4'>
-          <div className='h-full w-full flex items-center justify-center gap-4 border border-dashed border-black py-1 rounded-md px-2'>
-            <ToggleIcon height='17' className='rotate-180' fill='black'/>
-            <div className='flex gap-2'>
-              <div className='w-6 h-[3px] bg-black rounded-sm'></div>
-              <div className='w-6 h-[3px] bg-black rounded-sm'></div>
-            </div>
-            <ToggleIcon height='17' className='' fill='black'/>
-          </div>
-        </div> */}
       </div>
     </div>
   );

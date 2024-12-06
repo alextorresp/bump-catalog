@@ -82,16 +82,9 @@ export type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
   artist: ChartArtist;
 };
 
-export type TrackChartList = {
-  data: ChartTrack[];
-};
-
-export interface AlbumChartList {
-  data: ChartAlbum[];
-};
-
-export type ArtistChartList = {
-  data: ChartArtistWithPosition[];
+export type ApiChartObject<T> = {
+  data: T;
+  total: number;
 };
 
 export type Album = {
