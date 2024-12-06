@@ -153,3 +153,19 @@ export type Album = {
     data: AlbumTrack[];
   };
 };
+
+// Context type
+export type GlobalState = {
+  userName: string;
+  topArtists: string[];
+  topAlbums: string[];
+  topTracks: string[];
+  isListFull: boolean;
+  isAlreadyInList: boolean;
+  isNotificationVisible: boolean;
+  closeNotification: () => void;
+  setUserName: (userName: string) => void;
+  addToList: (type: 'artist' | 'track' | 'album', id: string) => void;
+  removeFromList?: (type: 'artist' | 'track' | 'album', id: string) => void;
+  reorderList?: (type: 'artist' | 'track' | 'album', newList: string[]) => void;
+};
