@@ -29,20 +29,9 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
   const chartData = response.data;
 
   return (
-    <div className='w-full relative flex flex-row overflow-hidden'>
+    <div className='w-full relative flex flex-row overflow-hidden border-black border rounded-xl'>
       <div className='flex flex-col w-full'>
-        <div className='w-full mb-2'>
-          <div className='h-full w-full flex items-center justify-between border border-black py-1 rounded-md px-2'>
-            <ToggleIcon height='15' className='rotate-180' fill='black'/>
-            <div className='flex gap-2'>
-              <div className='w-6 h-[3px] border border-black rounded-sm'></div>
-              <div className='w-6 h-[3px] bg-black rounded-sm'></div>
-            </div>
-            <ToggleIcon height='15' className='' fill='black'/>
-          </div>
-        </div>
-
-        <div className='card-container overflow-x-auto'>
+        <div className='card-container overflow-x-auto custom-scrollbar'>
             <div className='slider flex'>
               {chartData.map((item) => (
                   <CardTrendingItem
