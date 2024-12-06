@@ -22,8 +22,8 @@ interface AlbumSummary {
   cover_big: Url;
   cover_xl: Url;
   md5_image?: string;
-  tracklist: Url;
-  type: string;
+  tracklist?: Url;
+  type?: string;
 };
 
 interface AlbumTrack {
@@ -44,10 +44,10 @@ interface AlbumTrack {
     id: number | string, 
     name: string, 
     tracklist?: Url;
-    type: string;
+    type?: string;
   };
   album: AlbumSummary;
-  type: string;
+  type?: string;
 };
 
 type ChartArtist = {
@@ -60,8 +60,8 @@ type ChartArtist = {
   picture_big: Url;
   picture_xl: Url;
   radio: boolean;
-  tracklist: Url;
-  type: string;
+  tracklist?: Url;
+  type?: string;
 };
 
 export interface ChartArtistWithPosition extends ChartArtist {
@@ -74,7 +74,7 @@ export interface ChartAlbum extends AlbumSummary {
   explicit_lyrics: boolean;
   position: number;
   artist: ChartArtist;
-  type: string;
+  type?: string;
 };
 
 export type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
@@ -151,8 +151,8 @@ export type Album = {
     picture_medium: Url; 
     picture_big: Url;
     picture_xl: Url;
-    tracklist: Url;
-    type: string;
+    tracklist?: Url;
+    type?: string;
   };
   type?: string;
   tracks: {
