@@ -3,10 +3,10 @@ import { ChartType, ChartAlbum, ChartArtistWithPosition, ChartTrack } from '@/ut
 import CardTrendingItem from './CardTrendingItem';
 import { v4 as uuidv4 } from 'uuid';
 import ToggleIcon from '@/components/icons/ToggleIcon';
-import { ApiChartObject } from '@/utils/types';
+import { ApiReturnObject } from '@/utils/types';
 
 export default async function RowTrendingItems({ chartType }: { chartType: ChartType }) {
-  let response: ApiChartObject<ChartTrack[] | ChartAlbum[] | ChartArtistWithPosition[]> | null = null;
+  let response: ApiReturnObject<ChartTrack[] | ChartAlbum[] | ChartArtistWithPosition[]> | null = null;
 
   switch (chartType) {
     case 'albums':

@@ -82,9 +82,10 @@ export type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
   artist: ChartArtist;
 };
 
-export type ApiChartObject<T> = {
+export type ApiReturnObject<T> = {
   data: T;
   total: number;
+  next?: Url;
 };
 
 export type Album = {
