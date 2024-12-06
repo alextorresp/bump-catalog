@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'e-cdns-images.dzcdn.net',
+        hostname: 'cdn-images.dzcdn.net',
         port: '',
         pathname: '/**',
       },
