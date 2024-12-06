@@ -31,7 +31,7 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
   return (
     <div className='w-full relative flex flex-row overflow-hidden'>
       <div className='flex flex-col w-full'>
-        <div className='w-full mb-5'>
+        <div className='w-full mb-2'>
           <div className='h-full w-full flex items-center justify-between border border-black py-1 rounded-md px-2'>
             <ToggleIcon height='15' className='rotate-180' fill='black'/>
             <div className='flex gap-2'>
@@ -41,20 +41,18 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
             <ToggleIcon height='15' className='' fill='black'/>
           </div>
         </div>
-        
-        <div className='flex flex-row w-full overflow-x-hidden relative rounded-xl z-10 gap-4'>
-            {chartData.map((item) => (
-              <div className='min-w-[20%] flex' key={uuidv4()}>
-                <CardTrendingItem
-                  album={chartType === 'albums' ? item as ChartAlbum : null}
-                  artist={chartType === 'artists' ? item as ChartArtistWithPosition : null}
-                  track={chartType === 'tracks' ? item as ChartTrack : null}
-                />
-              </div>
-            ))}
-          <div className='absolute top-0 right-0 w-[10%] h-full bg-gradient-to-r from-transparent to-black'>
 
-          </div>
+        <div className='card-container overflow-x-auto'>
+            <div className='slider flex'>
+              {chartData.map((item) => (
+                  <CardTrendingItem
+                    key={uuidv4()}
+                    album={chartType === 'albums' ? item as ChartAlbum : null}
+                    artist={chartType === 'artists' ? item as ChartArtistWithPosition : null}
+                    track={chartType === 'tracks' ? item as ChartTrack : null}
+                  />
+              ))}
+            </div>
         </div>
       </div>
     </div>
