@@ -1,5 +1,14 @@
 export type IconProps = {
   classNames?: string;
+  width?: string;
+  fill: string;
+};
+
+export type CardProps = {
+  imageSrc: string;
+  altText: string;
+  title: string;
+  subtitle: string;
 };
 
 export type SearchType = 'All' | 'Artists' | 'Songs' | 'Albums';
