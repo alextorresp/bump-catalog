@@ -176,7 +176,7 @@ export type GlobalState = {
   isNotificationVisible: boolean;
   closeNotification: () => void;
   setUserName: (userName: string) => void;
-  addToList: (type: string, id: number) => void;
+  addToList: (type: string, id: number) => boolean;
   removeFromList: (type: string, id: string) => void;
   reorderList?: (type: string, newList: string[]) => void;
 };

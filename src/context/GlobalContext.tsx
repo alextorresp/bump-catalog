@@ -57,30 +57,39 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
   }, [pathname]);
 
   // Functions
-  const addToListHelper = (list: number[], setList: React.Dispatch<React.SetStateAction<number[]>>, id: number, limit: number) => {
+  const addToListHelper = (list: number[], setList: React.Dispatch<React.SetStateAction<number[]>>, id: number, limit: number): boolean => {
     if (list.length === limit) {
       setIsListFull(true);
       setIsNotificationVisible(true);
+      return false;
     } else if (list.includes(id)) {
       setIsAlreadyInList(true);
       setIsNotificationVisible(true);
+      return false;
     } else {
       setList((prevList) => [...prevList, id]);
+      return true;
     }
   };  
 
-  const addToList = useCallback((type: string, id: number) => {
+  const addToList = useCallback((type: string, id: number): boolean => {
+    let successfullyAdded: boolean = false;
+
     if (isNotificationVisible) {
-      return
+      successfullyAdded = false;
+      return successfullyAdded;
     };
 
     if (type === 'artist' || type === 'artists') {
-      addToListHelper(topArtists, setTopArtists, id, 10);
+      successfullyAdded = addToListHelper(topArtists, setTopArtists, id, 10);
     } else if (type === 'album' || type === 'albums') { 
-      addToListHelper(topAlbums, setTopAlbums, id, 10);
+      successfullyAdded = addToListHelper(topAlbums, setTopAlbums, id, 10);
     } else if (type === 'track' || type === 'tracks') {
-      addToListHelper(topTracks, setTopTracks, id, 10);
+      successfullyAdded = addToListHelper(topTracks, setTopTracks, id, 10);
     };
+
+    return successfullyAdded;
+
   }, [addToListHelper]);
 
   const closeNotification = () => {

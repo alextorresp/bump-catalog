@@ -1,15 +1,18 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import AddToListButton from './buttons/AddToListButton';
 import { CardProps } from '@/utils/types';
 import { useGlobalContext } from '../../context/GlobalContext';
 
 export default function Card({ type, id, imageSrc, altText, title, subtitle }: CardProps) {
   const { addToList } = useGlobalContext();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddClick = () => {
-    addToList(type, id);
+    const added = addToList(type, id);
+    setIsAdded(added);
   };
 
   return (
@@ -35,7 +38,7 @@ export default function Card({ type, id, imageSrc, altText, title, subtitle }: C
         <p className='max-w-full font-semibold mt-6 card-title'>{title}</p>
         <p className='text-slate-200 mt-0.5 font-extralight mb-5'>{subtitle}</p>
         <div className='w-full mt-auto'>
-          <AddToListButton onClick={handleAddClick} />
+          <AddToListButton onClick={handleAddClick} isAdded={isAdded}/>
         </div>
       </div>
     </div>
