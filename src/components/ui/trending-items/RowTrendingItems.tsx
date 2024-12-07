@@ -18,7 +18,8 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
       response = await getChartData<ChartTrack[]>(chartType);
       break;
     default:
-      throw new Error('Invalid chart type');
+      console.error('Invalid search type:', chartType);
+      return <p>Invalid chart type.</p>;
   };
 
   if (!response || !response.data) {

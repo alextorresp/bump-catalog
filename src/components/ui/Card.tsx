@@ -16,7 +16,7 @@ export default function Card({ type, id, imageSrc, altText, title, subtitle }: C
   };
 
   return (
-    <div className='w-full h-full p-3'>
+    <div className='w-full h-full p-3 text-white'>
       <div className='flex flex-col p-5 relative overflow-hidden rounded-xl h-full'>
         <Image
           src={imageSrc}

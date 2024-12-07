@@ -2,16 +2,24 @@
 
 import { useState, useCallback } from 'react';
 import { SearchType, FormValuesType } from '@/utils/types';
+import { useRouter } from 'next/navigation';
 import ListItem from './ListItem';
 import ToggleIcon from '@/components/icons/ToggleIcon';
 import SearchIcon from '@/components/icons/SearchIcon';
+
+const searchTypesAPIConversion = {
+  'Songs': 'track',
+  'Albums': 'album',
+  'Artists': 'artist'
+};
 
 export default function SearchBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formValues, setFormValues] = useState<FormValuesType>({
     searchInput: '',
-    searchType: 'All',
+    searchType: 'Songs',
   });
+  const router = useRouter();
 
   function handleFormChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormValues((prev) => ({
@@ -20,7 +28,22 @@ export default function SearchBar() {
     }));
   };
 
-  // Wrap the function in useCallback to avoid unecessary re-renders of the child component ListItem
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const { searchInput, searchType } = formValues;
+
+    if (!searchInput.trim()) return;
+    const APISearchType = searchTypesAPIConversion[searchType];
+    if (!APISearchType) {
+      return;
+    };
+
+    const queryString = `?q=${encodeURIComponent(searchInput)}`;
+    router.push(`/search/${APISearchType}${queryString}`);
+  };
+
+  // Wrap the function in useCallback to avoid unnecessary re-renders of the child component ListItem
   const handleDropdownChange = useCallback((value: SearchType) => {
     setFormValues((prev) => ({
       ...prev,
@@ -29,10 +52,8 @@ export default function SearchBar() {
     setIsDropdownOpen(false);
   }, []);
 
-  // sm:w-[600px] sm:h-[40px] w-[100%]
-
   return (
-    <form className='border rounded-xl border-black flex flex-row w-full h-[45px] items-center'>
+    <form className='border rounded-xl border-black flex flex-row w-full h-[45px] items-center' onSubmit={handleSubmit}>
       <label className='sr-only' htmlFor='searchInput'></label>
       <input 
         id='searchInput'
@@ -64,7 +85,7 @@ export default function SearchBar() {
 
         {isDropdownOpen && (
           <ul role='listbox' className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden z-10'>
-            {['Albums', 'All', 'Artists', 'Songs'].map((type) => (
+            {Object.keys(searchTypesAPIConversion).map((type) => (
               <ListItem 
                 key={type} 
                 value={type as SearchType}

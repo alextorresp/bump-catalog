@@ -13,7 +13,13 @@ export type CardProps = {
   subtitle: string;
 };
 
-export type SearchType = 'All' | 'Artists' | 'Songs' | 'Albums';
+export type SearchType = 'Artists' | 'Songs' | 'Albums';
+
+export type ApiReturnObject<T> = {
+  data: T;
+  total: number;
+  next?: Url;
+};
 
 export type FormValuesType = {
   searchInput: string;
@@ -21,10 +27,11 @@ export type FormValuesType = {
 };
 
 export type ChartType = 'artists' | 'albums' | 'tracks';
+export type ItemType = 'artist' | 'album' | 'track';
 
 type Url = string;
 
-interface AlbumSummary {
+export type AlbumSummary = {
   id: number;
   title: string;
   cover: Url;
@@ -35,9 +42,15 @@ interface AlbumSummary {
   md5_image?: string;
   tracklist?: Url;
   type?: string;
+  link?: Url;
+  genre_id?: string;
+  nb_tracks?: number;
+  record_type?: string;
+  explicit_lyrics?: boolean;
+  artist?: ChartArtist;
 };
 
-interface AlbumTrack {
+export type AlbumTrack = {
   id: number;
   readable?: boolean;
   title: string;
@@ -45,23 +58,18 @@ interface AlbumTrack {
   title_version?: string;
   link: Url;
   duration: number;
-  rank: number | string;
+  rank?: number;
   explicit_lyrics?: boolean;
   explicit_content_lyrics?: number;
   explicit_content_cover?: boolean | number;
   preview?: Url;
   md5_image?: string;
-  artist: { 
-    id: number | string, 
-    name: string, 
-    tracklist?: Url;
-    type?: string;
-  };
+  artist: ChartArtist;
   album: AlbumSummary;
   type?: string;
 };
 
-type ChartArtist = {
+export type ChartArtist = {
   id: number;
   name: string;
   link: string;
@@ -70,9 +78,26 @@ type ChartArtist = {
   picture_medium: Url; 
   picture_big: Url;
   picture_xl: Url;
-  radio: boolean;
+  radio?: boolean;
+  nb_album?: number;
+  nb_fan?: number;
   tracklist?: Url;
   type?: string;
+};
+
+export type GeneralSearchResult = {
+  id: number;
+  readable: boolean;
+  title: string;
+  title_short: string;
+  title_version: string;
+  link: string;
+  duration: number;
+  rank: number;
+  explicit_lyrics: boolean;
+  preview: string;
+  artist: ChartArtist;
+  album: AlbumSummary;
 };
 
 export interface ChartArtistWithPosition extends ChartArtist {
@@ -91,12 +116,6 @@ export interface ChartAlbum extends AlbumSummary {
 export type ChartTrack = Omit<AlbumTrack, 'artist' | 'readable'> & {
   position: number;
   artist: ChartArtist;
-};
-
-export type ApiReturnObject<T> = {
-  data: T;
-  total: number;
-  next?: Url;
 };
 
 export type Album = {
@@ -162,6 +181,89 @@ export type Album = {
   type?: string;
   tracks: {
     data: AlbumTrack[];
+  };
+};
+
+export type Artist = {
+  id: number;
+  name: string;
+  link: Url;
+  share: Url;
+  picture: Url;
+  picture_small: Url;
+  picture_medium: Url;
+  picture_big: Url;
+  picture_xl: Url;
+  nb_album: number;
+  nb_fan: number;
+  radio: boolean;
+  tracklist: Url;
+};
+
+export type Track = {
+  id: number;
+  readable: boolean;
+  title: string;
+  title_short: string;
+  title_version: string;
+  unseen: boolean;
+  isrc: string;
+  link: string;
+  share: string;
+  duration: number;
+  track_position: number;
+  disk_number: number;
+  rank: number;
+  release_date: string;
+  explicit_lyrics: boolean;
+  explicit_content_lyrics: number;
+  explicit_content_cover: number;
+  preview: string;
+  bpm: number;
+  gain: number;
+  available_countries: string[];
+  alternative: Track | null;
+  contributors: {
+    id: number;
+    name: string;
+    link: string;
+    share: string;
+    picture: string;
+    picture_small: string;
+    picture_medium: string;
+    picture_big: string;
+    picture_xl: string;
+    radio: boolean;
+    tracklist: string;
+    type: "artist";
+    role: string;
+  }[];
+  md5_image: string;
+  track_token: string;
+  artist: {
+    id: string;
+    name: string;
+    link: string;
+    share: string;
+    picture: string;
+    picture_small: string;
+    picture_medium: string;
+    picture_big: string;
+    picture_xl: string;
+    radio: boolean;
+    tracklist: string;
+    type: "artist";
+  };
+  album: {
+    id: string;
+    title: string;
+    link: string;
+    cover: string;
+    cover_small: string;
+    cover_medium: string;
+    cover_big: string;
+    cover_xl: string;
+    release_date: string;
   };
 };
 
