@@ -166,6 +166,6 @@ export type GlobalState = {
   closeNotification: () => void;
   setUserName: (userName: string) => void;
   addToList: (type: 'artist' | 'track' | 'album', id: string) => void;
-  removeFromList?: (type: 'artist' | 'track' | 'album', id: string) => void;
+  removeFromList: (type: 'artist' | 'track' | 'album', id: string) => void;
   reorderList?: (type: 'artist' | 'track' | 'album', newList: string[]) => void;
 };

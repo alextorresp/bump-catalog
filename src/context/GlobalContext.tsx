@@ -69,7 +69,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       setIsAlreadyInList(true);
       setIsNotificationVisible(true);
     } else {
-      setList([...list, id]);
+      setList((prevList) => [...prevList, id]);
     }
   };  
 
@@ -92,6 +92,12 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     setIsListFull(false);
   };
 
+  const removeFromList = (() => {
+    if (isNotificationVisible) {
+      return
+    };
+  });
+
   return <GlobalContext.Provider value={{
     userName,
     topArtists,
@@ -100,7 +106,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     isListFull, 
     isAlreadyInList,
     isNotificationVisible,
-    // removeFromList,
+    removeFromList,
     // reorderList,
     setUserName,
     addToList,
