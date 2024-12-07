@@ -72,7 +72,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     }
   };  
 
-  const addToList = useCallback((type: string, id: number): boolean => {
+  const addToList = (type: string, id: number): boolean => {
     let successfullyAdded: boolean = false;
 
     if (isNotificationVisible) {
@@ -89,8 +89,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     };
 
     return successfullyAdded;
-
-  }, [addToListHelper]);
+  };
 
   const closeNotification = () => {
     setIsNotificationVisible(false);
