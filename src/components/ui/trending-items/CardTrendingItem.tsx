@@ -5,19 +5,20 @@ type Props = {
   artist: ChartArtistWithPosition | null;
   album: ChartAlbum | null;
   track: ChartTrack | null;
-  key: string;
 };
 
-export default function CardTrendingItem({ album, artist, track, key }: Props) {
+export default function CardTrendingItem({ album, artist, track }: Props) {
   if ((album ? 1 : 0) + (artist ? 1 : 0) + (track ? 1 : 0) !== 1) {
     console.error('Exactly one of album, artist, or track should be passed to CardTrendingItem.');
     return null;
   };
 
   return (
-    <div className='group relative text-slate-100 rounded-xl flex-[0_0_20%]' key={key}>
+    <div className='group relative text-slate-100 rounded-xl flex-[0_0_20%]'>
       {album && (
-        <Card 
+        <Card
+          type='album'
+          id={album.id}
           imageSrc={album.cover_xl} 
           altText={`The album cover for ${album.title}`}
           title={album.title}
@@ -26,7 +27,9 @@ export default function CardTrendingItem({ album, artist, track, key }: Props) {
       )}
 
       {artist && (
-        <Card 
+        <Card
+          type='artist' 
+          id={artist.id}
           imageSrc={artist.picture_xl} 
           altText={`${artist.name}`}
           title={artist.name}
@@ -35,7 +38,9 @@ export default function CardTrendingItem({ album, artist, track, key }: Props) {
       )}
 
       {track && (
-        <Card 
+        <Card
+          type='track'
+          id={track.id}
           imageSrc={track.album.cover_xl}
           altText={`The cover for ${track.album.cover_xl}`}
           title={track.title}

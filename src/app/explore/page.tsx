@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import SearchBar from '@/components/ui/search-bar/SearchBar';
 import RowTrendingItems from '@/components/ui/trending-items/RowTrendingItems';
 export default function Explore() {

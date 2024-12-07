@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import Nav from '@/components/layout/nav/Nav';
 import './globals.css';
 import { GlobalContextProvider } from '@/context/GlobalContext';
+import Notification from '@/components/ui/Notification';
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
@@ -18,9 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${jakarta.className} mb-[120px]`}>
+      <body className={`${jakarta.className} mb-[120px] relative`}>
         <GlobalContextProvider>
           <Nav />
+          <Notification />
           {children}
         </GlobalContextProvider>
       </body>

@@ -5,6 +5,8 @@ export type IconProps = {
 };
 
 export type CardProps = {
+  type: string;
+  id: number;
   imageSrc: string;
   altText: string;
   title: string;
@@ -166,15 +168,15 @@ export type Album = {
 // Context type
 export type GlobalState = {
   userName: string;
-  topArtists: string[];
-  topAlbums: string[];
-  topTracks: string[];
+  topArtists: number[];
+  topAlbums: number[];
+  topTracks: number[];
   isListFull: boolean;
   isAlreadyInList: boolean;
   isNotificationVisible: boolean;
   closeNotification: () => void;
   setUserName: (userName: string) => void;
-  addToList: (type: 'artist' | 'track' | 'album', id: string) => void;
-  removeFromList: (type: 'artist' | 'track' | 'album', id: string) => void;
-  reorderList?: (type: 'artist' | 'track' | 'album', newList: string[]) => void;
+  addToList: (type: string, id: number) => void;
+  removeFromList: (type: string, id: string) => void;
+  reorderList?: (type: string, newList: string[]) => void;
 };

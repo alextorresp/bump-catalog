@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useState, createContext, useContext, useEffect, ReactNode, useCallback } from 'react';
+import { usePathname, useRouter } from 'next/navigation'
 import { GlobalState } from '@/utils/types';
 
 // Context 
@@ -6,6 +9,9 @@ export const GlobalContext = createContext<GlobalState  | undefined>(undefined);
 
 // Provider 
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Helper function to retreive items from local storage
   const getFromLocalStorage = <T extends any>(key: string, defaultValue: T): T => {
     if (typeof window !== 'undefined') {
@@ -17,9 +23,9 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
 
   // States to keep track of
   const [userName, setUserName] = useState<string>(getFromLocalStorage('userName', ''));
-  const [topArtists, setTopArtists] = useState<string[]>(getFromLocalStorage('topArtists', []));
-  const [topAlbums, setTopAlbums] = useState<string[]>(getFromLocalStorage('topAlbums', []));
-  const [topTracks, setTopTracks] = useState<string[]>(getFromLocalStorage('topTracks', []));
+  const [topArtists, setTopArtists] = useState<number[]>(getFromLocalStorage('topArtists', []));
+  const [topAlbums, setTopAlbums] = useState<number[]>(getFromLocalStorage('topAlbums', []));
+  const [topTracks, setTopTracks] = useState<number[]>(getFromLocalStorage('topTracks', []));
   const [isListFull, setIsListFull] = useState<boolean>(false);
   const [isAlreadyInList, setIsAlreadyInList] = useState<boolean>(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState<boolean>(false);
@@ -41,27 +47,17 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     localStorage.setItem('topTracks', JSON.stringify(topTracks));
   }, [topTracks]);
 
-  // Reset notification states on page refresh or navigation
+  // Reset notification states on page navigation
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      closeNotification();  
+    const handleRouteChange = () => {
+      closeNotification();
     };
 
-    const handlePopState = () => {
-      closeNotification(); 
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('popstate', handlePopState);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, []);
+    handleRouteChange();
+  }, [pathname]);
 
   // Functions
-  const addToListHelper = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, id: string, limit: number) => {
+  const addToListHelper = (list: number[], setList: React.Dispatch<React.SetStateAction<number[]>>, id: number, limit: number) => {
     if (list.length === limit) {
       setIsListFull(true);
       setIsNotificationVisible(true);
@@ -73,7 +69,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     }
   };  
 
-  const addToList = useCallback((type: 'artist' | 'artists' | 'album' | 'albums' | 'track' | 'tracks', id: string) => {
+  const addToList = useCallback((type: string, id: number) => {
     if (isNotificationVisible) {
       return
     };
@@ -89,6 +85,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
 
   const closeNotification = () => {
     setIsNotificationVisible(false);
+    setIsAlreadyInList(false);
     setIsListFull(false);
   };
 
@@ -115,3 +112,11 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     {children}
   </GlobalContext.Provider>
 }
+
+export const useGlobalContext = () => {
+  const context = useContext(GlobalContext);
+  if (!context) {
+    throw new Error('useGlobalContext must be wrapped in a Provider');
+  };
+  return context;
+};

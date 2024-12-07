@@ -12,7 +12,7 @@ export default async function getChartData<T>( chartType: ChartType ): Promise<A
     };
 
     const data: ApiReturnObject<T> = await response.json();
-      
+
     return data;
 
   } catch (error) {
