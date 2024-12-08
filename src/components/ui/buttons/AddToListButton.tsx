@@ -10,13 +10,13 @@ export default function AddToListButton({ onClick, isAdded }: AddToListButtonPro
 
   return (
     <button
-      className={`rounded-full flex items-center justify-center w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 relative ${
+      className={`group rounded-full flex items-center justify-center w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 relative hover:bg-red-400 transition-all ${
         isAdded ? 'bg-green-600' : 'bg-white'
       }`}
       onClick={onClick}
     >
       <AddIcon
-        classNames={`transiiton-all ${isAdded ? 'text-white opacity-0' : 'text-black opacity-1'}`}
+        classNames={`transiton-all group-hover:fill-white ${isAdded ? 'text-white opacity-0' : 'text-black opacity-1'}`}
         fill='black'
       />
       <CheckmarkIcon 

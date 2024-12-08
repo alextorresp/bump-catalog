@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SearchResultsGrid from '@/components/ui/search-results/SearchResultsGrid';
 
 type Props = {
@@ -9,7 +10,8 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
   const [resolvedSearchParams, resolvedParams] = await Promise.all([searchParams, params]);
 
   const searchType = resolvedParams.searchType;
-  const rawQuery = resolvedSearchParams['q'];
+  const rawQuery= resolvedSearchParams['q'];
+  const rawIndex = resolvedSearchParams['index'];
 
   const query =
     typeof rawQuery === 'string'
@@ -17,6 +19,14 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
       : Array.isArray(rawQuery)
       ? rawQuery[0]
       : undefined;
+
+    const index = !rawIndex 
+      ? '' 
+      : Array.isArray(rawIndex) 
+      ? rawIndex[0]
+      : typeof rawIndex === 'string' 
+      ? rawIndex
+      : '';
 
   if (!query) {
     return (
@@ -28,11 +38,18 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
 
   return (
     <div>
-      <h2>
-        Search Results for '{query}' in {searchType}
-      </h2>
+      <div className='flex flex-row justify-between'>
+        <h3 className='mb-2'>
+          Results for '{query}' in {searchType.charAt(0).toUpperCase() + searchType.slice(1)}s
+        </h3>
+        <Link href={'/explore'}>
+          <button className='border border-dashed rounded-full border-black py-1 px-3 hover:bg-gray-200 transition-all'>
+            Back to search
+          </button>
+        </Link>
+      </div>
 
-      <SearchResultsGrid searchType={searchType} query={query} />
+      <SearchResultsGrid searchType={searchType} query={query} index={index} />
     </div>
   )
 };

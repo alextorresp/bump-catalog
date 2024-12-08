@@ -1,24 +1,26 @@
 import getSearchData from '@/api/getSearchData';
 import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist, GeneralSearchResult } from '@/utils/types';
 import Card from '../Card';
+import Link from 'next/link';
 
 type Props = {
   searchType: string;
   query: string;
+  index: string;
 };
 
-export default async function SearchResultsGrid({ searchType, query }: Props) {
+export default async function SearchResultsGrid({ searchType, query, index }: Props) {
   let response: ApiReturnObject<AlbumSummary[] | AlbumTrack[] | ChartArtist[] | GeneralSearchResult[]> | null = null;
 
   switch (searchType) {
     case 'artist':
-      response = await getSearchData<ChartArtist[]>(searchType, query);
+      response = await getSearchData<ChartArtist[]>(searchType, query, index);
       break;
     case 'album':
-      response = await getSearchData<AlbumSummary[]>(searchType, query);
+      response = await getSearchData<AlbumSummary[]>(searchType, query, index);
       break;
     case 'track':
-      response = await getSearchData<AlbumTrack[]>(searchType, query);
+      response = await getSearchData<AlbumTrack[]>(searchType, query, index);
       break;
     default:
       console.error('Invalid search type:', searchType);
@@ -32,48 +34,72 @@ export default async function SearchResultsGrid({ searchType, query }: Props) {
   };
 
   let data = response.data;
+  let next: string = '';
+  if (response.next) {
+    next = response.next;
+  };
+
+  const currentIndex = parseInt(index) || 0;
+  const nextIndex = currentIndex + 25;
+  const prevIndex = currentIndex > 0 ? currentIndex - 25 : 0;
 
   return (
-    <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5'>
-      {
-        data.map((item) => {
-          if (searchType === 'artist') {
-            const artist = item as ChartArtist;
-            return <Card
-              key={artist.id}
-              type='artist' 
-              id={artist.id} 
-              imageSrc={artist.picture_xl} 
-              altText={artist.name}
-              title={artist.name}
-              subtitle=''
-            />
-          } else if (searchType === 'album') {
-            const album = item as AlbumSummary;
-            return <Card 
-              key={album.id}
-              type='album'
-              id={album.id}
-              imageSrc={album.cover_xl}
-              altText={`The album cover for ${album.artist?.name}`}
-              title={album.title}
-              subtitle={album.artist?.name || ''}
-            />
-          } else if (searchType === 'track' || searchType === '') {
-            const track = item as AlbumTrack;
-            return <Card 
-            key={track.id}
-            type='track'
-            id={track.id}
-            imageSrc={track.album.cover_xl}
-            altText={`The album cover for ${track.title}`}
-            title={track.title}
-            subtitle={track.artist.name}
-            />
+    <div className='flex flex-col'>
+      <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5'>
+        {
+          data.map((item) => {
+            if (searchType === 'artist') {
+              const artist = item as ChartArtist;
+              return <Card
+                key={artist.id}
+                type='artist' 
+                id={artist.id} 
+                imageSrc={artist.picture_xl} 
+                altText={artist.name}
+                title={artist.name}
+                subtitle=''
+              />
+            } else if (searchType === 'album') {
+              const album = item as AlbumSummary;
+              return <Card 
+                key={album.id}
+                type='album'
+                id={album.id}
+                imageSrc={album.cover_xl}
+                altText={`The album cover for ${album.artist?.name}`}
+                title={album.title}
+                subtitle={album.artist?.name || ''}
+              />
+            } else if (searchType === 'track' || searchType === '') {
+              const track = item as AlbumTrack;
+              return <Card 
+              key={track.id}
+              type='track'
+              id={track.id}
+              imageSrc={track.album.cover_xl}
+              altText={`The album cover for ${track.title}`}
+              title={track.title}
+              subtitle={track.artist.name}
+              />
+            }
+            return <p>Sorry, please try again in a few minutes.</p>
+          })
+        }
+      </div>
+
+      <div className='flex justify-center gap-3 mt-5 w-full'>
+          { currentIndex > 0 &&
+            <Link href={`/search/${searchType}?q=${encodeURIComponent(query)}&index=${prevIndex}`}>
+              <button className='px-3 py-1 md:px-4 md:py-2 rounded-2xl border border-black border-dashed bg-white hover:bg-gray-200 text-sm transition-all'>Back</button>
+            </Link>
           }
-          return <p>Sorry, please try again in a few minutes.</p>
-        })
-      }
+
+          {next && 
+            <Link href={`/search/${searchType}?q=${encodeURIComponent(query)}&index=${nextIndex}`}>
+              <button className='px-3 py-1 md:px-3 md:py-2 rounded-2xl border border-black border-dashed bg-white hover:bg-gray-200 text-sm transition-all'>Next</button>
+            </Link>
+          }
+        </div>  
     </div>
   )
 };

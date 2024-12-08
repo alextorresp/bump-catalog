@@ -1,9 +1,17 @@
 import { ItemType } from '@/utils/types';
 import { ApiReturnObject } from '@/utils/types';
 
-export default async function getSearchData<T>( itemType: ItemType, query: string ): Promise<ApiReturnObject<T> | null> {
+export default async function getSearchData<T>( itemType: ItemType, query: string, index: string ): Promise<ApiReturnObject<T> | null> {
   try {
-    const response = await fetch(`https://api.deezer.com/search/${itemType}?q=${encodeURIComponent(query)}`, {
+    let searchPath: string = '';
+    
+    if (index === '') {
+      searchPath = `${itemType}?q=${encodeURIComponent(query)}`
+    } else if (typeof index === 'string') {
+      searchPath = `${itemType}?q=${encodeURIComponent(query)}&index=${encodeURIComponent(index)}`;
+    };
+
+    const response = await fetch(`https://api.deezer.com/search/${searchPath}`, {
       next: { revalidate:  60 * 60 * 24 }
     });
 
@@ -12,6 +20,10 @@ export default async function getSearchData<T>( itemType: ItemType, query: strin
     };
 
     const data: ApiReturnObject<T> = await response.json();
+
+    if (!data || !data.data) {
+      throw new Error('No data found');
+    };
 
     return data;
 

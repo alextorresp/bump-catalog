@@ -22,7 +22,7 @@ h3 {
   font-size: clamp(27px, 1.5vw, 22px);
 }
 
-p, .responsive-text, ::placeholder {
+p, .responsive-text, ::placeholder, button {
   font-size: clamp(14px, 1.5vw, 16px);
 }
 
