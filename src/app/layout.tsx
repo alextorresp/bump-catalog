@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${jakarta.className} mb-[120px] relative`}>
+      <body className={`${jakarta.className} mb-[120px] relative custom-scrollbar`}>
         <GlobalContextProvider>
           <Nav />
           <Notification />

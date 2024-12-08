@@ -14,7 +14,7 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
   };
 
   return (
-    <div className='group relative text-slate-100 rounded-xl flex-[0_0_20%]'>
+    <div className='relative text-slate-100 rounded-xl flex-[0_0_20%]'>
       {album && (
         <Card
           type='album'
