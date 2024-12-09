@@ -1,5 +1,6 @@
 import { CatelogItem } from '@/utils/types';
 import Image from 'next/image';
+import SubtractFromListButton from '../buttons/SubtractFromListButton';
 
 type Props = {
   position: number;
@@ -8,6 +9,10 @@ type Props = {
 
 export default function CatelogCard({ position, itemData }: Props) {
   const { title, artist_name, id, type, imageSrc, release_date, album_name } = itemData;
+
+  const handleSubtractClick = () => {
+
+  };
 
   return (
     <div className='relative flex flex-col md:bg-slate-100 lg:p-4 md:p-2 p-2 md:text-black rounded-sm'>
@@ -26,7 +31,10 @@ export default function CatelogCard({ position, itemData }: Props) {
       <p className='mt-3 font-bold md:text-lg md:leading-[22px] leading-[15px]'>{title}</p>
       { artist_name && <p className='mt-1'>{artist_name}</p> }
       { release_date && <p className='mt-1'><em>{release_date.toString()}</em><br></br></p> }    
-      { album_name && <p>Album: {album_name}</p> } 
+      { album_name && <p>Album: {album_name}</p> }
+      <div className='flex justify-end mt-auto'>
+        <SubtractFromListButton isSubtracted={false} isLoading={false} onClick={handleSubtractClick}/> 
+      </div>
     </div>
   )
 };
