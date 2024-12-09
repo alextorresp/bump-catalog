@@ -15,6 +15,16 @@ export type CardProps = {
   subtitle: string;
 };
 
+export type CatelogItem = {
+  id: number;
+  type: string;
+  title: string;
+  imageSrc: string;
+  artist_name?: string;
+  release_date?: string | Date;
+  album_name?: string;
+};
+
 export type SearchType = 'Artists' | 'Songs' | 'Albums';
 
 export type ApiReturnObject<T> = {
@@ -252,16 +262,6 @@ export type Track = {
     cover_xl: string;
     release_date: string;
   };
-};
-
-export type CatelogItem = {
-  id: number;
-  type: string;
-  title: string;
-  imageSrc: string;
-  artist_name?: string;
-  release_date?: string | Date;
-  album_name?: string;
 };
 
 // Context type
