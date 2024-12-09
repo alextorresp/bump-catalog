@@ -17,8 +17,8 @@ export default function AddToListButton({ onClick, isAdded, isLoading }: AddToLi
   return (
     <button
       className={`group rounded-full flex items-center justify-center w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 relative hover:bg-green-600 transition-all ${
-        isAdded ? 'bg-green-600' : 'bg-white'
-      }`}
+        isAdded || isLoading ? 'bg-green-600' : 'bg-white'
+      } `}
       onClick={onClick}
       disabled={addingToList}
     >
