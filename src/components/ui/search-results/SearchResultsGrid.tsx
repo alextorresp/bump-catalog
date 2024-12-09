@@ -1,5 +1,5 @@
 import getSearchData from '@/api/getSearchData';
-import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist, GeneralSearchResult } from '@/utils/types';
+import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist } from '@/utils/types';
 import Card from '../Card';
 import Link from 'next/link';
 
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default async function SearchResultsGrid({ searchType, query, index }: Props) {
-  let response: ApiReturnObject<AlbumSummary[] | AlbumTrack[] | ChartArtist[] | GeneralSearchResult[]> | null = null;
+  let response: ApiReturnObject<AlbumSummary[] | AlbumTrack[] | ChartArtist[] > | null = null;
 
   switch (searchType) {
     case 'artist':

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, createContext, useContext, useEffect, ReactNode, useCallback } from 'react';
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import getItemData from '../api/getItemData';
 import filterData from '@/utils/helpers';
 import { Artist, Album, Track, CatelogItem, GlobalState, ItemType } from '@/utils/types';
@@ -11,7 +11,6 @@ export const GlobalContext = createContext<GlobalState  | undefined>(undefined);
 
 // Provider 
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
   const pathname = usePathname();
 
   // Helper function to retreive items from local storage
@@ -19,7 +18,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     if (typeof window !== 'undefined') {
       const storedValue = localStorage.getItem(key);
       return storedValue ? JSON.parse(storedValue) : defaultValue;
-    }
+    };
     return defaultValue;
   };
 

@@ -13,10 +13,9 @@ export default async function getChartData<T>( chartType: ChartType ): Promise<A
 
     const data: ApiReturnObject<T> = await response.json();
 
-    return data;
-
+    return data || null;
   } catch (error) {
-    console.log('Error fetching album chart', error );
+    console.log('Error fetching chart data', error );
     return null;
   };
 };
