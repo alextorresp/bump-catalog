@@ -1,6 +1,9 @@
+'use client';
+
 import { CatelogItem } from '@/utils/types';
 import Image from 'next/image';
 import SubtractFromListButton from '../buttons/SubtractFromListButton';
+import { useState } from 'react';
 
 type Props = {
   position: number;
@@ -9,6 +12,7 @@ type Props = {
 
 export default function CatelogCard({ position, itemData }: Props) {
   const { title, artist_name, id, type, imageSrc, release_date, album_name } = itemData;
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
   const handleSubtractClick = () => {
 
@@ -21,11 +25,16 @@ export default function CatelogCard({ position, itemData }: Props) {
       </div>
 
       <div className='aspect-square relative'>
+        <div className={`${isImageLoading ? 'opacity-1 animate-pulse' : 'opacity-0 animate-none' } ease-out w-full h-full absolute top-0 left-0 bg-gray-300 transition-all`}>
+        </div>
+
         <Image
           src={imageSrc}
           alt={title}
           fill
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          className={`${isImageLoading ? 'opacity-0' : 'opacity-1'} transition-all ease-in`}
+          onLoad={() => setIsImageLoading(false)}
         />
       </div>
       <p className='mt-3 font-bold md:text-lg md:leading-[22px] leading-[15px]'>{title}</p>
