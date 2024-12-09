@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useState, createContext, useContext, useEffect, ReactNode, useCallback } from 'react';
+import React, { useState, createContext, useContext, useEffect, ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
-import getItemData from '../api/getItemData';
-import filterData from '@/utils/helpers';
-import { Artist, Album, Track, CatelogItem, GlobalState, ItemType } from '@/utils/types';
+import { CatelogItem, GlobalState, ItemType } from '@/utils/types';
 
 // Context 
 export const GlobalContext = createContext<GlobalState  | undefined>(undefined);
@@ -56,56 +54,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
   }, [pathname]);
 
   // Functions
-  const fetchDataAndAddToList = async (
-    id: number,
-    type: ItemType,
-    list: CatelogItem[],
-    setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>
-  ): Promise<boolean> => {
-    try {
-      const data = await getItemData<Album | Track | Artist>(type, id);
-      if (!data) throw new Error('Data not found');
-  
-      let filteredItem = filterData({ type, data });
-
-      if (filteredItem) {
-        const item = filteredItem as CatelogItem;
-        setList((prevList) => [...prevList, item]);
-      };
-      
-      return true;
-    } catch (error) {
-      console.error('Error adding to list:', error);
-      closeNotification();
-      return false;
-    };
-  };  
-
-  // Check whether the item is already in the list or the list is full
-  const addToListHelper = (
-    list: CatelogItem[],
-    setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>,
-    id: number,
-    limit: number,
-    type: ItemType
-  ): boolean => {
-    if (list.length >= limit) {
-      setIsListFull(true);
-      setIsNotificationVisible(true);
-      return false;
-    };
-
-    if (list.find(item => item.id === id)) {
-      setIsAlreadyInList(true);
-      setIsNotificationVisible(true);
-      return false;
-    };
-
-    return true;
-  };
-
   // Adds an item to a list
-  const addToList = async (type: string, id: number): Promise<boolean> => {
+  const addToList = (type: string, item: CatelogItem): boolean => {
     if (isNotificationVisible) return false;
 
     let list: CatelogItem[], setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>, itemType: ItemType;
@@ -127,13 +77,36 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     };
 
     // Check whether the item is already in the list or if the list is full
-    const canProceed = addToListHelper(list, setList, id, 10, itemType);
+    const canProceed = addToListHelper(list, item.id, 10, itemType);
 
-    // If neither, fetch the data and store it in the list
+    // If neither, store the item in the list
     if (canProceed) {
-      return await fetchDataAndAddToList(id, itemType, list, setList);
+      setList((prevList) => [...prevList, item]);
+      return true;
     };
     return false;
+  };
+
+  // Check whether the item is already in the list or the list is full
+  const addToListHelper = (
+    list: CatelogItem[],
+    id: number,
+    limit: number,
+    type: ItemType
+  ): boolean => {
+    if (list.length >= limit) {
+      setIsListFull(true);
+      setIsNotificationVisible(true);
+      return false;
+    };
+
+    if (list.find(item => item.id === id)) {
+      setIsAlreadyInList(true);
+      setIsNotificationVisible(true);
+      return false;
+    };
+
+    return true;
   };
 
   const closeNotification = () => {
@@ -161,7 +134,6 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     isNotificationVisible,
     removeFromList,
     setAddingToList,
-    // reorderList,
     setUserName,
     addToList,
     closeNotification,

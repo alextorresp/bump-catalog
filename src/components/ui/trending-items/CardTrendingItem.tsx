@@ -20,9 +20,9 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           type='album'
           id={album.id}
           imageSrc={album.cover_xl} 
-          altText={`The album cover for ${album.title}`}
+          alt_text={`The album cover for ${album.title}`}
           title={album.title}
-          subtitle={album.artist.name}
+          artist_name={album.artist.name}
           />
       )}
 
@@ -31,9 +31,8 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           type='artist' 
           id={artist.id}
           imageSrc={artist.picture_xl} 
-          altText={`${artist.name}`}
+          alt_text={`${artist.name}`}
           title={artist.name}
-          subtitle=''
         />
       )}
 
@@ -42,9 +41,9 @@ export default function CardTrendingItem({ album, artist, track }: Props) {
           type='track'
           id={track.id}
           imageSrc={track.album.cover_xl}
-          altText={`The cover for ${track.album.cover_xl}`}
+          alt_text={`The cover for ${track.album.cover_xl}`}
           title={track.title}
-          subtitle={track.artist.name}
+          artist_name={track.artist.name}
         />        
       )}
     </div>

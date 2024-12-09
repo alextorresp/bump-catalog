@@ -1,7 +1,7 @@
-import getSearchData from '@/api/getSearchData';
-import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist } from '@/utils/types';
-import Card from '../Card';
 import Link from 'next/link';
+import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist } from '@/utils/types';
+import getSearchData from '@/api/getSearchData';
+import Card from '../Card';
 
 type Props = {
   searchType: string;
@@ -46,9 +46,8 @@ export default async function SearchResultsGrid({ searchType, query, index }: Pr
           type='artist'
           id={artist.id}
           imageSrc={artist.picture_xl}
-          altText={artist.name}
+          alt_text={artist.name}
           title={artist.name}
-          subtitle=''
         />;
       case 'album':
         const album = item as AlbumSummary;
@@ -57,9 +56,9 @@ export default async function SearchResultsGrid({ searchType, query, index }: Pr
           type='album'
           id={album.id}
           imageSrc={album.cover_xl}
-          altText={`The album cover for ${album.artist?.name}`}
+          alt_text={`The album cover for ${album.artist?.name}`}
           title={album.title}
-          subtitle={album.artist?.name || ''}
+          artist_name={album.artist?.name || ''}
         />;
       case 'track':
         const track = item as AlbumTrack;
@@ -68,9 +67,9 @@ export default async function SearchResultsGrid({ searchType, query, index }: Pr
           type='track'
           id={track.id}
           imageSrc={track.album.cover_xl}
-          altText={`The album cover for ${track.title}`}
+          alt_text={`The album cover for ${track.title}`}
           title={track.title}
-          subtitle={track.artist.name}
+          artist_name={track.artist.name}
         />;
       default:
         return <p>Sorry, please try again in a few minutes.</p>;
@@ -90,7 +89,7 @@ export default async function SearchResultsGrid({ searchType, query, index }: Pr
             </Link>
           }
 
-          {response.next && 
+          { response.next && 
             <Link href={`/search/${searchType}?q=${encodeURIComponent(query)}&index=${nextIndex}`}>
               <button className='px-3 py-1 md:px-3 md:py-2 rounded-2xl border border-black border-dashed bg-white hover:bg-gray-200 text-sm transition-all'>Next</button>
             </Link>

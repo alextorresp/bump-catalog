@@ -6,15 +6,6 @@ export type IconProps = {
   fill: string;
 };
 
-export type CardProps = {
-  type: string;
-  id: number;
-  imageSrc: string;
-  altText: string;
-  title: string;
-  subtitle: string;
-};
-
 export type CatelogItem = {
   id: number;
   type: string;
@@ -23,6 +14,7 @@ export type CatelogItem = {
   artist_name?: string;
   release_date?: string | Date;
   album_name?: string;
+  alt_text: string;
 };
 
 export type SearchType = 'Artists' | 'Songs' | 'Albums';
@@ -278,7 +270,7 @@ export type GlobalState = {
   closeNotification: () => void;
   setUserName: (userName: string) => void;
   setAddingToList: Dispatch<SetStateAction<boolean>>
-  addToList: (type: string, id: number) => Promise<boolean>;
+  addToList: (type: string, item: CatelogItem) => boolean;
   removeFromList: (type: string, id: string) => void;
   reorderList?: (type: string, newList: string[]) => void;
 };

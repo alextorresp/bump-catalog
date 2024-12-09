@@ -1,9 +1,9 @@
 'use client';
 
-import { CatelogItem } from '@/utils/types';
-import Image from 'next/image';
-import SubtractFromListButton from '../buttons/SubtractFromListButton';
 import { useState } from 'react';
+import Image from 'next/image';
+import { CatelogItem } from '@/utils/types';
+import SubtractFromListButton from '../buttons/SubtractFromListButton';
 
 type Props = {
   position: number;
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function CatelogCard({ position, itemData }: Props) {
-  const { title, artist_name, id, type, imageSrc, release_date, album_name } = itemData;
+  const { title, artist_name, imageSrc, release_date, album_name } = itemData;
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
   const handleSubtractClick = () => {

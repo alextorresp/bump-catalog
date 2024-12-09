@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { CatelogItem } from '@/utils/types';
 import CatelogCard from './CatelogCard';
 import ButtonOne from '../buttons/ButtonOne';
-import Image from 'next/image';
 
 type Props= {
   title: string;
@@ -61,7 +61,7 @@ export default function CatelogGrid({ title, data }: Props) {
           {/* Items 7-10 */}
           <div className={`row-2
             ${!hasMoreThanFiveItems ? 'hidden' : 'grid '} 
-            md:grid-cols-5 grid-cols-1 gap-4 md:border border-gray-400 p-7 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
+            md:grid-cols-5 grid-cols-1 md:gap-[15px] lg:gap-[30px] md:border border-gray-400 p-7 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
             >
             {data.slice(6, 11).map((item, index) => (
               <CatelogCard position={index + 7} itemData={item} key={index}/>
