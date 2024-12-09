@@ -1,12 +1,18 @@
+'use client';
+
 import AddIcon from '@/components/icons/AddIcon';
 import CheckmarkIcon from '@/components/icons/CheckmarkIcon';
+import LoadingIcon from '@/components/icons/LoadingIcon';
+import { useGlobalContext } from '@/context/GlobalContext';
 
 type AddToListButtonProps = {
   onClick: () => void; 
   isAdded: boolean;
+  isLoading: boolean;
 };
 
-export default function AddToListButton({ onClick, isAdded }: AddToListButtonProps) {
+export default function AddToListButton({ onClick, isAdded, isLoading }: AddToListButtonProps) {
+  const { addingToList } = useGlobalContext();
 
   return (
     <button
@@ -14,13 +20,18 @@ export default function AddToListButton({ onClick, isAdded }: AddToListButtonPro
         isAdded ? 'bg-green-600' : 'bg-white'
       }`}
       onClick={onClick}
+      disabled={addingToList}
     >
       <AddIcon
-        classNames={`transiton-all group-hover:fill-white ${isAdded ? 'text-white opacity-0' : 'text-black opacity-1'}`}
+        classNames={`transiton-all group-hover:fill-white ${(isAdded || isLoading) ? 'text-white opacity-0' : 'text-black opacity-1'}`}
         fill='black'
       />
       <CheckmarkIcon 
-        classNames={`absolute flex items-center justify-center transition-all ${isAdded ? 'opacity-1' : 'opacity-0'}`}
+        classNames={`absolute flex items-center justify-center transition-all ${(isAdded && !isLoading) ? 'opacity-1' : 'opacity-0'}`}
+        fill='white'
+      />
+      <LoadingIcon 
+        classNames={`absolute flex items-center justify-center transition-all ${(!isAdded && isLoading) ? 'opacity-1 animate-spin' : 'opacity-0'}`}
         fill='white'
       />
     </button>

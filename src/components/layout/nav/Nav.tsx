@@ -13,8 +13,8 @@ export default function Nav() {
           <p className='whitespace-nowrap'>Explore</p>
         </Link>
 
-        <Link href='/my-wall' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-gray-200 transition-all'>
-          <p className='whitespace-nowrap'>My Wall</p>
+        <Link href='/my-catelog' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-gray-200 transition-all'>
+          <p className='whitespace-nowrap'>My Catelog</p>
         </Link>
       </nav>
     </header>

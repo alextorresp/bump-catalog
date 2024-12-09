@@ -3,7 +3,7 @@
 import { useGlobalContext } from '@/context/GlobalContext';
 
 export default function Notification() {
-  const { isListFull, isAlreadyInList, closeNotification, isNotificationVisible } = useGlobalContext();
+  const { isListFull, isAlreadyInList, closeNotification, isNotificationVisible, errorFetching } = useGlobalContext();
 
   const handleExit = () => {
     closeNotification();
@@ -21,7 +21,11 @@ export default function Notification() {
           {isAlreadyInList &&
             <h2 className='mb-6'>This item is already in your list.</h2>
           }
-        <button className='border border-dashed rounded-full border-black px-7 py-1 text-black' onClick={handleExit}>
+
+          {errorFetching &&
+            <h2 className='mb-6'>Sorry, there was an error. Please try again in a moment.</h2>
+          }
+        <button className='border border-dashed rounded-full border-black px-7 py-1 text-black hover:bg-black hover:text-white transition-all' onClick={handleExit}>
           <p>Exit</p>
         </button>
       </div>

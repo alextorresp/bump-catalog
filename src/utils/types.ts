@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type IconProps = {
   classNames?: string;
   width?: string;
@@ -267,18 +269,31 @@ export type Track = {
   };
 };
 
+export type CatelogItem = {
+  id: number;
+  type: string;
+  title: string;
+  imageSrc: string;
+  artist_name?: string;
+  release_date?: string | Date;
+  album_name?: string;
+};
+
 // Context type
 export type GlobalState = {
   userName: string;
-  topArtists: number[];
-  topAlbums: number[];
-  topTracks: number[];
+  topArtists: CatelogItem[];
+  topAlbums: CatelogItem[];
+  topTracks: CatelogItem[];
   isListFull: boolean;
   isAlreadyInList: boolean;
   isNotificationVisible: boolean;
+  addingToList: boolean;
+  errorFetching: boolean;
   closeNotification: () => void;
   setUserName: (userName: string) => void;
-  addToList: (type: string, id: number) => boolean;
+  setAddingToList: Dispatch<SetStateAction<boolean>>
+  addToList: (type: string, id: number) => Promise<boolean>;
   removeFromList: (type: string, id: string) => void;
   reorderList?: (type: string, newList: string[]) => void;
 };
