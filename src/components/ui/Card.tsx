@@ -28,7 +28,7 @@ export default function Card({ type, id, imageSrc, altText, title, subtitle }: C
           alt={altText}
           className='top-0 left-0 -z-10 blur-lg'
           fill
-          sizes=''
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />
         <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'></div>
         <div className='absolute w-full h-3/4 rounded-t-xl top-[0] left-0 -z-10 border-t border-l border-r border-dashed border-black'></div>
@@ -37,7 +37,7 @@ export default function Card({ type, id, imageSrc, altText, title, subtitle }: C
             src={imageSrc}
             alt={altText}
             fill
-            sizes=''
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
         </div>
         <p className='max-w-full font-semibold mt-6 card-title'>{title}</p>

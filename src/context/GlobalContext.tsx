@@ -53,11 +53,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
 
   // Reset notification states on page navigation
   useEffect(() => {
-    const handleRouteChange = () => {
-      closeNotification();
-    };
-
-    handleRouteChange();
+    closeNotification();
   }, [pathname]);
 
   // Functions
@@ -81,8 +77,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
       return true;
     } catch (error) {
       console.error('Error adding to list:', error);
-      setErrorFetching(true);
-      setIsNotificationVisible(true);
+      closeNotification();
       return false;
     };
   };  

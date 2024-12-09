@@ -21,9 +21,9 @@ export default function MyWall() {
     <main className='container'>
       <h3 className='mb-5'>My Catelog</h3>
       <div className='flex flex-col gap-5'>
-        <CatelogGrid title='Top Tracks' type='track' data={topTracks}/>
-        <CatelogGrid title='Top Albums' type='albums' data={topAlbums}/>
-        <CatelogGrid title='Top Artists' type='artists' data={topArtists}/>
+        <CatelogGrid title='My Top Tracks' type='track' data={topTracks}/>
+        <CatelogGrid title='My Top Albums' type='albums' data={topAlbums}/>
+        <CatelogGrid title='My Top Artists' type='artists' data={topArtists}/>
       </div>
     </main>
   )

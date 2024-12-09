@@ -21,20 +21,19 @@ export default function CatelogGrid({ title, data }: Props) {
           alt={data[0].title}
           className='top-0 left-0 -z-20 blur-md'
           fill
-          sizes=''
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
           <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'></div>
         </div>
       }
 
-      <h3 className='font-bold mb-2 z-10'>{title}</h3>
+      <h3 className='font-bold mb-6 z-10 text-center bg-black rounded-md py-3 '>{title}</h3>
       <div className={`
-        ${!data[1] && 'grid-cols-1 md:grid-cols-1 lg:grid-cols-1'} 
         ${!data[0] ? 'hidden' : 'grid'} 
-        grid-cols-1 md:grid-cols-1 lg:grid-cols-1 w-full place-items-center`}
+        grid-cols-1 w-full place-items-center`}
         >
         
-        <div className='col-span-3 md:col-span-1 grid-rows-1 gap-4 md:w-[30%] sm:w-[65%] w-[65%] md:mb-6'>
+        <div className='md:col-span-1 grid-rows-1 gap-4 md:w-[30%] sm:w-[65%] w-[65%] md:mb-10'>
           {data[0] && (
             <CatelogCard position={1} itemData={data[0]} />
           )}
@@ -42,24 +41,24 @@ export default function CatelogGrid({ title, data }: Props) {
 
         
         <div className={`
-          ${!data[5] && 'md:grid-rows-1'} 
+          ${!data[5] ? 'md:grid-rows-1' : 'md:grid-rows-2'} 
           ${!data[1] ? 'hidden' : 'grid'}
-          col-span-3 md:grid-rows-2 grid-rows-1 md:gap-3 w-full mb-3 place-items-center`}
+          grid-rows-1 md:gap-2 lg:gap-3 w-full mb-3 place-items-center`}
           >
-          <div className='grid md:grid-cols-5 grid-cols-1 md:gap-4 md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]'>
+          <div className='row-1 grid md:grid-cols-5 grid-cols-1 p-7 md:gap-[15px] lg:gap-[30px] md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]'>
             {data.slice(1, 6).map((item, index) => (
-              <div key={index} className='p-4'>
+              <div key={index}>
                 <CatelogCard position={index + 2} itemData={item} />
               </div>
             ))}
           </div>
 
-          <div className={`
-            ${!data[5] ? 'hidden' : 'grid'} 
-            md:grid-cols-5 grid-cols-1 gap-4 md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
+          <div className={`row-2
+            ${!data[5] ? 'hidden' : 'grid '} 
+            md:grid-cols-5 grid-cols-1 gap-4 md:border border-gray-400 p-7 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
             >
             {data.slice(6, 11).map((item, index) => (
-              <div key={index} className='p-4'>
+              <div key={index} className=''>
                 <CatelogCard position={index + 7} itemData={item} />
               </div>
             ))}
