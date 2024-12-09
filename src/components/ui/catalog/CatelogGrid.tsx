@@ -31,22 +31,22 @@ export default function CatelogGrid({ title, data }: Props) {
       <div className={`
         ${!data[1] && 'grid-cols-1 md:grid-cols-1 lg:grid-cols-1'} 
         ${!data[0] ? 'hidden' : 'grid'} 
-        grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 w-full place-items-center`}
+        grid-cols-1 md:grid-cols-1 lg:grid-cols-1 w-full place-items-center`}
         >
-        {/* First column takes 25% of the parent's width */}
-        <div className='col-span-3 md:col-span-1 grid-rows-1 gap-4 md:w-[30%] sm:w-[50%] w-[70%]'>
+        
+        <div className='col-span-3 md:col-span-1 grid-rows-1 gap-4 md:w-[30%] sm:w-[65%] w-[65%] md:mb-6'>
           {data[0] && (
             <CatelogCard position={1} itemData={data[0]} />
           )}
         </div>
 
-        {/* Remaining 3 columns split up the rest of the 75% of parent's width */}
+        
         <div className={`
           ${!data[5] && 'md:grid-rows-1'} 
           ${!data[1] ? 'hidden' : 'grid'}
-          col-span-3 md:grid-rows-2 grid-rows-1 gap-4 w-full mb-3 place-items-center`}
+          col-span-3 md:grid-rows-2 grid-rows-1 md:gap-3 w-full mb-3 place-items-center`}
           >
-          <div className='grid md:grid-cols-5 grid-cols-1 gap-4 md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]'>
+          <div className='grid md:grid-cols-5 grid-cols-1 md:gap-4 md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]'>
             {data.slice(1, 6).map((item, index) => (
               <div key={index} className='p-4'>
                 <CatelogCard position={index + 2} itemData={item} />
@@ -56,7 +56,7 @@ export default function CatelogGrid({ title, data }: Props) {
 
           <div className={`
             ${!data[5] ? 'hidden' : 'grid'} 
-            grid md:grid-cols-5 grid-cols-1 gap-4 md:border border-black rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
+            md:grid-cols-5 grid-cols-1 gap-4 md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
             >
             {data.slice(6, 11).map((item, index) => (
               <div key={index} className='p-4'>
