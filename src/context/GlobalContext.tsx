@@ -2,7 +2,7 @@
 
 import React, { useState, createContext, useContext, useEffect, ReactNode, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation'
-import getItemData from '../../app/api/data/getItemData';
+import getItemData from '../api/getItemData';
 import filterData from '@/utils/helpers';
 import { Artist, Album, Track, CatelogItem, GlobalState, ItemType } from '@/utils/types';
 

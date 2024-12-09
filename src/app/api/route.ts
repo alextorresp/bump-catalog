@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const type = request.nextUrl.searchParams.get('type');

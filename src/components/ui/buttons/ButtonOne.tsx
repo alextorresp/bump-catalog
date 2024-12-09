@@ -12,7 +12,7 @@ type ButtonOneProps = {
 export default function ButtonOne({ text, onClick, link, className }: ButtonOneProps) {
   if (link) {
     return (
-      <Link href={link} className={`${className} border-black border border-dashed rounded-full py-1 px-3 text-black transition-all`}>
+      <Link href={link} className={`${className} border-black border border-dashed rounded-full py-1 px-3 text-black transition-all ease-in`}>
           {text}
       </Link>
     );
@@ -21,7 +21,7 @@ export default function ButtonOne({ text, onClick, link, className }: ButtonOneP
   return (
     <button
       onClick={onClick}
-      className={`${className} border-black border border-dashed rounded-full py-1 px-3 text-black transition-all`}
+      className={`${className} border-black border border-dashed rounded-full py-1 px-3 text-black transition-all ease-in`}
     >
       {text}
     </button>

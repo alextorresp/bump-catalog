@@ -9,11 +9,11 @@ export default function Nav() {
           <Image alt='' src='/bump-logo.png' width={100} height={100} sizes='30vw' priority={false}></Image>
         </Link>
 
-        <Link href='/explore' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-gray-200 transition-all'>
+        <Link href='/explore' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-black hover:text-white transition-all ease-in'>
           <p className='whitespace-nowrap'>Explore</p>
         </Link>
 
-        <Link href='/my-catelog' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-gray-200 transition-all'>
+        <Link href='/my-catelog' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-black hover:text-white transition-all ease-in'>
           <p className='whitespace-nowrap'>My Catelog</p>
         </Link>
       </nav>
