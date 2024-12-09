@@ -21,7 +21,7 @@ export default function Explore() {
         </div>
 
         <div>
-          <h3 className='font-bold mt-14 mb-2'>Trending Albums</h3>
+          <h3 className='font-bold mb-2'>Trending Albums</h3>
           <RowTrendingItems chartType='albums' />
         </div>
       </div>
