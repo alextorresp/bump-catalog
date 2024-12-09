@@ -12,7 +12,7 @@ type Props= {
 export default function CatelogGrid({ title, data }: Props) {
   return (
     <div className={`relative flex flex-col p-5 border border-black rounded-xl pb-5 overflow-hidden text-white
-    ${data[0] ? 'bg-transparent': 'bg-black text-white'}`}
+    ${data[0] ? 'bg-transparent': 'bg-white text-black border-dashed'}`}
     >
       {data[0] && 
         <div className='absolute w-full h-full top-0 left-0'>
@@ -62,13 +62,20 @@ export default function CatelogGrid({ title, data }: Props) {
         </div>
       </div>
 
-      <div className='flex flex-row justify-between mt-3 mb-2'>
-      {data.length < 10 && 
-        <ButtonOne text='Add items!' link='/explore' className='border-none z-20 hover:bg-slate-300 hover:text-black text-black w-[150px] text-center'/>
+      {
+        data.length === 0 && <p className='text-black text-center'>No items. Go explore and add some!</p>
       }
 
+      <div className='flex flex-row justify-center gap-4 mt-3 mb-2'>
+        {data.length < 10 && 
+          <ButtonOne text='Add items!' link='/explore' className={`
+            ${data[0] ? 'hover:bg-slate-300 hover:text-black text-black bg-white': 'bg-black text-white hover:bg-slate-300 hover:text-black'}
+            border-none z-20  w-[150px] text-center`}
+          />
+        }
+
       {data.length >= 2 &&
-        <ButtonOne text='Reorder Items' className='hover:bg-slate-300 border-none z-20 text-black hover:text-black w-[150px]'/>
+        <ButtonOne text='Reorder Items' className='hover:bg-slate-300 bg-white border-none z-20 text-black hover:text-black w-[150px]'/>
       }
       </div>
   </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import Nav from '@/components/layout/nav/Nav';
+import Footer from '@/components/layout/footer/Footer';
 import './globals.css';
 import { GlobalContextProvider } from '@/context/GlobalContext';
 import Notification from '@/components/ui/Notification';
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Nav />
           <Notification />
           {children}
+          <Footer />
         </GlobalContextProvider>
       </body>
     </html>

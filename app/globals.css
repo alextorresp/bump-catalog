@@ -76,4 +76,8 @@ p, .responsive-text, ::placeholder, button {
   height: 15px; 
 }
 
+.explore-heading {
+  line-height: 120px;
+}
+
 

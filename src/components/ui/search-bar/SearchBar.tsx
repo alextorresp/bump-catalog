@@ -77,7 +77,7 @@ export default function SearchBar() {
           type='button'
           aria-label='Search category'
           onClick={() => setIsDropdownOpen((prev) => !prev)}
-          className='flex flex-row items-center justify-center h-full text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full'
+          className='flex flex-row items-center justify-center h-full text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full hover:bg-slate-300 transition-all'
         >
           {formValues.searchType}
           <ToggleIcon className={`transition-all ${isDropdownOpen ? 'rotate-90' : ''}`} height='12' fill='black'/>
@@ -97,7 +97,7 @@ export default function SearchBar() {
         )}
       </div>
 
-      <button type='submit' aria-label='Submit search' className='h-full flex items-center pl-3 pr-4'>
+      <button type='submit' aria-label='Submit search' className='h-full flex items-center pl-3 pr-4 hover:bg-slate-300 transition-all rounded-e-xl'>
         <SearchIcon />
       </button>
     </form>
