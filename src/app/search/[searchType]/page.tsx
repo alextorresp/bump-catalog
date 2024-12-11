@@ -50,7 +50,7 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
         </Link>
       </div>
 
-      <SearchResultsGrid searchType={searchType} query={query} index={index} />
+      {/* <SearchResultsGrid searchType={searchType} query={query} index={index} /> */}
     </div>
   )
 };

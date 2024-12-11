@@ -12,17 +12,17 @@ export default function Explore() {
       <div className='w-full flex flex-col gap-5 overflow-visible'>
         <div>
           <h3 className='font-bold mb-2'>Trending Songs</h3>
-          <RowTrendingItems chartType='tracks' />
+          {/* <RowTrendingItems chartType='tracks' /> */}
         </div>
 
         <div>
           <h3 className='font-bold mb-2'>Trending Artists</h3>
-          <RowTrendingItems chartType='artists' />
+          {/* <RowTrendingItems chartType='artists' /> */}
         </div>
 
         <div>
           <h3 className='font-bold mb-2'>Trending Albums</h3>
-          <RowTrendingItems chartType='albums' />
+          {/* <RowTrendingItems chartType='albums' /> */}
         </div>
       </div>
     </main>

@@ -17,17 +17,10 @@ export type CatelogItem = {
   alt_text: string;
 };
 
-export type SearchType = 'Artists' | 'Songs' | 'Albums';
-
 export type ApiReturnObject<T> = {
   data: T;
   total: number;
   next?: Url;
-};
-
-export type FormValuesType = {
-  searchInput: string;
-  searchType: SearchType;
 };
 
 export type ChartType = 'artists' | 'albums' | 'tracks';

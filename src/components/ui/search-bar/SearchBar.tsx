@@ -1,97 +1,108 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { SearchType, FormValuesType } from '@/utils/types';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ListItem from './ListItem';
 import ToggleIcon from '@/components/icons/ToggleIcon';
 import SearchIcon from '@/components/icons/SearchIcon';
+import { ItemType } from '@/utils/types';
 
-const searchTypesAPIConversion = {
-  'Songs': 'track',
-  'Albums': 'album',
-  'Artists': 'artist'
+type SearchType = 'Artists' | 'Songs' | 'Albums';
+
+const UIToAPIMap: Record<SearchType, ItemType> = {
+  Songs: 'track',
+  Albums: 'album',
+  Artists: 'artist',
 };
+
+const searchTypes: SearchType[] = Object.keys(UIToAPIMap) as SearchType[];
 
 export default function SearchBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [formValues, setFormValues] = useState<FormValuesType>({
-    searchInput: '',
-    searchType: 'Songs',
-  });
+  const [searchInput, setSearchInput] = useState('');
+  const [searchType, setSearchType] = useState<SearchType>('Songs');
   const router = useRouter();
 
-  function handleFormChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setFormValues((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value
-    }));
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const { searchInput, searchType } = formValues;
-
     if (!searchInput.trim()) return;
-    const APISearchType = searchTypesAPIConversion[searchType];
-    if (!APISearchType) {
-      return;
+
+    if (!UIToAPIMap[searchType]) {
+      return router.push('/not-found');
     };
 
-    const queryString = `?q=${encodeURIComponent(searchInput)}`;
-    router.push(`/search/${APISearchType}${queryString}`);
+    router.push(`/search/${UIToAPIMap[searchType]}?q=${encodeURIComponent(searchInput)}`);
   };
 
-  // Wrap the function in useCallback to avoid unnecessary re-renders of the child component ListItem
-  const handleDropdownChange = useCallback((value: SearchType) => {
-    setFormValues((prev) => ({
-      ...prev,
-      searchType: value,
-    }));
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleDropdownSelection = (type: SearchType) => {
+    setSearchType(type);
     setIsDropdownOpen(false);
-  }, []);
+  };
 
   return (
-    <form className='border rounded-xl border-black flex flex-row w-full h-[45px] items-center' onSubmit={handleSubmit}>
-      <label className='sr-only' htmlFor='searchInput'></label>
+    <form 
+    onSubmit={handleSubmit}
+    className='border rounded-xl border-black flex flex-row w-full h-[45px] items-center' 
+    role='search'
+    aria-label='Search bar'
+    >
+      <label className='sr-only' htmlFor='searchInput'>Search Input</label>
       <input 
         id='searchInput'
+        type='text'
         name='searchInput'
         placeholder='Search ...'
         aria-label='Search input'
         required
-        value={formValues.searchInput}
-        onChange={handleFormChange}
+        value={searchInput}
+        onChange={handleInputChange}
         className='h-full pl-4 rounded-l-full flex flex-grow w-3/4 focus:outline-none'
       />
 
-      <label className='sr-only' htmlFor='searchType'></label>
       <div
-        id='searchType'
         className='relative h-full flex items-center justify-center sm:min-w-[93px] min-w-[78px]'
-        aria-expanded={isDropdownOpen}
-        aria-haspopup='listbox'
       >
+        <label className='sr-only' htmlFor='searchTypeDropdown'></label>
         <button
+          id='searchTypeDropdown'
           type='button'
+          aria-haspopup='listbox'
           aria-label='Search category'
-          onClick={() => setIsDropdownOpen((prev) => !prev)}
+          aria-expanded={isDropdownOpen}
+          onClick={toggleDropdown}
           className='flex flex-row items-center justify-center h-full text-center gap-[5px] border-r border-l border-black border-dashed responsive-text w-full hover:bg-slate-300 transition-all'
         >
-          {formValues.searchType}
+          {searchType}
           <ToggleIcon className={`transition-all ${isDropdownOpen ? 'rotate-90' : ''}`} height='12' fill='black'/>
         </button>
 
         {isDropdownOpen && (
-          <ul role='listbox' className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden z-10'>
-            {Object.keys(searchTypesAPIConversion).map((type) => (
-              <ListItem 
-                key={type} 
-                value={type as SearchType}
-                isSelected={formValues.searchType === type} // Only passing down the necessary state to avoid unnecessary re-renders 
-                handleDropdownChange={handleDropdownChange}
-              />
+          <ul role='listbox' 
+          aria-label='Search type options'
+          className='absolute sm:top-[39px] top-[29px] border-l border-r border-b border-dashed rounded-b-xl border-black bg-white w-full overflow-hidden z-10'
+          >
+            {searchTypes.map((type) => (
+              <li 
+                key={type}
+                role='option'
+                aria-selected={searchType === type}
+                className={`cursor-pointer hover:bg-gray-300 py-1 first:pt-2 last:pb-2 text-center responsive-text px-2.5 ${searchType === type ? 'bg-slate-200' : ''}`}
+                tabIndex={0}
+                onClick={() => handleDropdownSelection(type)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleDropdownSelection(type);
+                }}
+              >
+                {type}
+              </li>
             ))}
           </ul>
         )}
