@@ -51,7 +51,7 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
         </Link>
       </div>
 
-      <Suspense fallback={<p>Loading...</p>} key={`${searchType}-${query}`}>
+      <Suspense fallback={<p>Loading...</p>} key={`${searchType}-${query}-${index}`}>
         <SearchResultsGrid searchType={searchType} query={query} index={index}/>
       </Suspense>
     </div>
