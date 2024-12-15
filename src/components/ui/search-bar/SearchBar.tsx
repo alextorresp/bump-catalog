@@ -70,7 +70,7 @@ export default function SearchBar() {
       <div
         className='relative h-full flex items-center justify-center sm:min-w-[93px] min-w-[78px]'
       >
-        <label className='sr-only' htmlFor='searchTypeDropdown'></label>
+        <label className='sr-only' htmlFor='searchTypeDropdown'>Search Type Dropdown Menu</label>
         <button
           id='searchTypeDropdown'
           type='button'
