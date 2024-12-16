@@ -41,21 +41,17 @@ export default function Card({ id, imageSrc, type, title, artist_name, release_d
           className='top-0 left-0 -z-10 blur-lg'
           fill
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-          onLoad={() => setIsImageLoading(false)}
         />
 
         <div className='absolute w-full h-full top-0 left-0 -z-10 bg-gradient-to-t from-40% from-black to-transparent'></div>
         <div className='absolute w-full h-3/4 rounded-t-xl top-[0] left-0 -z-10 border-t border-l border-r border-dashed border-black'></div>
         <div className='aspect-square relative'>
-          <div className={`${isImageLoading ? 'opacity-1 animate-pulse' : 'opacity-0 animate-none' } w-full h-full absolute top-0 left-0 bg-gray-300 transition-all ease-out`}>
-          </div>
-
           <Image
             src={imageSrc}
             alt={alt_text}
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            className={`${isImageLoading ? 'opacity-0' : 'opacity-1'} transition-all ease-in`}
+            className={`${isImageLoading ? 'opacity-0' : 'opacity-1'} transition-all ease-in duration-[400ms]`}
             onLoad={() => setIsImageLoading(false)}
           />
         </div>
