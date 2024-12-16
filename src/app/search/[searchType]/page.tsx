@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
 import SearchResultsGrid from '@/components/ui/search-results/SearchResultsGrid';
+import { SearchResultsGridSkeleton } from '@/components/ui/search-results/SearchResultsGridSkeleton';
 
 type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -51,7 +52,7 @@ export default async function SearchTypePage({ searchParams, params }: Props) {
         </Link>
       </div>
 
-      <Suspense fallback={<p>Loading...</p>} key={`${searchType}-${query}-${index}`}>
+      <Suspense fallback={<SearchResultsGridSkeleton />} key={`${searchType}-${query}-${index}`}>
         <SearchResultsGrid searchType={searchType} query={query} index={index}/>
       </Suspense>
     </div>

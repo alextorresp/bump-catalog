@@ -1,6 +1,8 @@
 import { ItemType } from '@/utils/types';
 import { ApiReturnObject } from '@/utils/types';
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export default async function getSearchData<T>( itemType: ItemType, query: string, index: string ): Promise<ApiReturnObject<T> | null> {
   try {
     let searchPath: string = '';
