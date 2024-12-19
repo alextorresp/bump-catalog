@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Button from '@/components/ui/buttons/Button';
 
 export default function Nav() {
   return (
@@ -9,12 +10,12 @@ export default function Nav() {
           <Image alt='' src='/bump-logo.png' width={100} height={100} sizes='30vw' priority={false}></Image>
         </Link>
 
-        <Link href='/explore' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-black hover:text-white transition-all ease-in'>
-          <p className='whitespace-nowrap'>Explore</p>
+        <Link href='/explore'>
+          <Button size={'auto'} className='py-[1px]'>Explore</Button>
         </Link>
 
-        <Link href='/my-catelog' className='flex flex-row items-center rounded-xl px-2.5 border border-black h-full border-dashed hover:bg-black hover:text-white transition-all ease-in'>
-          <p className='whitespace-nowrap'>My Catelog</p>
+        <Link href='/my-catelog'>
+          <Button size={'auto'} className='py-[1px]'>My Catelog</Button>
         </Link>
       </nav>
     </header>

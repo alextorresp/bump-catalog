@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { CatelogItem } from '@/utils/types';
 import CatelogCard from './CatelogCard';
-import ButtonOne from '../buttons/ButtonOne';
+import Button from '../buttons/Button';
+import Link from 'next/link';
 
 type Props= {
   title: string;
@@ -74,15 +75,16 @@ export default function CatelogGrid({ title, data }: Props) {
 
       <div className='flex flex-row justify-center gap-4 mt-3 mb-2'>
         {data.length < 10 && 
-          (<ButtonOne text='Add items!' link='/explore' className={`
-            ${hasData ? 'hover:bg-slate-300 hover:text-black text-black bg-white': 'bg-black text-white hover:bg-slate-300 hover:text-black'}
-            border-none z-20  w-[150px] text-center`}
-          />
-        )}
+          (
+            <Link href={'/explore'} className='z-10'>
+              <Button variant={'solid'} size={'standard'}>Add Items!</Button>
+            </Link>
+          )
+        }
 
       {data.length >= 2 &&
-        (<ButtonOne text='Reorder Items' className='hover:bg-slate-300 bg-white border-none z-20 text-black hover:text-black w-[150px]'/>
-        )}
+        <Button variant={'solid'} size={'standard'}>Reorder Items!</Button>
+      }
       </div>
   </div>
 )
