@@ -2,7 +2,7 @@ import { cn } from '@/utils/helpers';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'rounded-full py-1 px-3 transition-all ease-in border z-10 border-dashed border-black text-black bg-white hover:bg-black hover:text-white focus:bg-black focus:text-white',
+  'rounded-full py-1 px-3 transition-all ease-in border z-10 border-dashed border-black text-black bg-white hover:bg-black hover:text-white focus-visible:bg-black focus-visible:text-white',
   {
     variants: {
       variant: {
