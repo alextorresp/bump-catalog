@@ -1,4 +1,4 @@
-import getChartData from '@/api/getChartData';
+import getTrendingData from '@/features/trending-items/api/get-trending-data';
 import { ChartType, ChartAlbum, ChartArtistWithPosition, ChartTrack } from '@/utils/types';
 import CardTrendingItem from './CardTrendingItem';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,13 +9,13 @@ export default async function RowTrendingItems({ chartType }: { chartType: Chart
 
   switch (chartType) {
     case 'albums':
-      response = await getChartData<ChartAlbum[]>(chartType);
+      response = await getTrendingData<ChartAlbum[]>(chartType);
       break;
     case 'artists':
-      response = await getChartData<ChartArtistWithPosition[]>(chartType);
+      response = await getTrendingData<ChartArtistWithPosition[]>(chartType);
       break;
     case 'tracks':
-      response = await getChartData<ChartTrack[]>(chartType);
+      response = await getTrendingData<ChartTrack[]>(chartType);
       break;
     default:
       console.error('Invalid search type:', chartType);

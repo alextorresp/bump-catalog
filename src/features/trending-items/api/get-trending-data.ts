@@ -1,7 +1,7 @@
 import { ChartType } from '@/utils/types';
 import { ApiReturnObject } from '@/utils/types';
 
-export default async function getChartData<T>( chartType: ChartType ): Promise<ApiReturnObject<T> | null> {
+export default async function getTrendingData<T>( chartType: ChartType ): Promise<ApiReturnObject<T> | null> {
   try {
     const response = await fetch(`https://api.deezer.com/chart/0/${chartType}`, {
       next: { revalidate:  60 * 60 * 24 }

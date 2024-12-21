@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { AlbumSummary, AlbumTrack, ApiReturnObject, ChartArtist } from '@/utils/types';
-import getSearchData from '@/api/getSearchData';
+import getSearchData from '@/features/search/api/get-search-data';
 import Card from '../Card';
 
 type Props = {
