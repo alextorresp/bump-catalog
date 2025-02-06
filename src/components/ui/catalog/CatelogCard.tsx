@@ -7,15 +7,16 @@ import SubtractFromListButton from '../buttons/SubtractFromListButton';
 
 type Props = {
   position: number;
-  itemData: CatelogItem
+  itemData: CatelogItem;
+  type: string;
 };
 
-export default function CatelogCard({ position, itemData }: Props) {
+export default function CatelogCard({ position, itemData, type }: Props) {
   const { title, artist_name, imageSrc, release_date, album_name } = itemData;
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
   const handleSubtractClick = () => {
-
+    
   };
 
   return (

@@ -58,26 +58,23 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
   const addToList = (type: string, item: CatelogItem): boolean => {
     if (isNotificationVisible) return false;
 
-    let list: CatelogItem[], setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>, itemType: ItemType;
+    let list: CatelogItem[], setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>
     // Filter what type the item is and what list it belong to
     if (type === 'artist') {
       list = topArtists;
       setList = setTopArtists;
-      itemType = 'artist';
     } else if (type === 'album') {
       list = topAlbums;
       setList = setTopAlbums;
-      itemType = 'album';
     } else if (type === 'track') {
       list = topTracks;
       setList = setTopTracks;
-      itemType = 'track';
     } else {
       return false;
     };
 
     // Check whether the item is already in the list or if the list is full
-    const canProceed = addToListHelper(list, item.id, 10, itemType);
+    const canProceed = addToListHelper(list, item.id, 10, type);
 
     // If neither, store the item in the list
     if (canProceed) {

@@ -10,7 +10,7 @@ type Props= {
   data: CatelogItem[];
 };
 
-export default function CatelogGrid({ title, data }: Props) {
+export default function CatelogGrid({ title, data, type }: Props) {
   const hasData = data.length > 0;
   const hasMoreThanFiveItems = data.length >= 6;
 
@@ -41,7 +41,7 @@ export default function CatelogGrid({ title, data }: Props) {
         <div 
           className='md:col-span-1 grid-rows-1 gap-4 md:w-[30%] sm:w-[65%] w-[65%] md:mb-10 mt-6'>
           {hasData && (
-            <CatelogCard position={1} itemData={data[0]} />
+            <CatelogCard position={1} itemData={data[0]} type={type}/>
           )}
         </div>
 
@@ -55,7 +55,7 @@ export default function CatelogGrid({ title, data }: Props) {
           {/* Items #2-6 */}
           <div className='row-1 grid md:grid-cols-5 grid-cols-1 p-7 md:gap-[15px] lg:gap-[30px] md:border border-gray-400 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]'>
             {data.slice(1, 6).map((item, index) => (
-              <CatelogCard position={index + 2} itemData={item} key={index}/>
+              <CatelogCard position={index + 2} itemData={item} key={index} type={type}/>
             ))}
           </div>
           
@@ -65,7 +65,7 @@ export default function CatelogGrid({ title, data }: Props) {
             md:grid-cols-5 grid-cols-1 md:gap-[15px] lg:gap-[30px] md:border border-gray-400 p-7 rounded-xl border-dashed md:w-full sm:w-[70%] w-[70%]`}
             >
             {data.slice(6, 11).map((item, index) => (
-              <CatelogCard position={index + 7} itemData={item} key={index}/>
+              <CatelogCard position={index + 7} itemData={item} key={index} type={type}/>
             ))}
           </div>
         </div>
