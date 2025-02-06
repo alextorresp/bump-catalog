@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useGlobalContext } from '@/context/GlobalContext';
 import { CatelogItem } from '@/utils/types';
 import SubtractFromListButton from '../buttons/SubtractFromListButton';
 
@@ -12,11 +13,19 @@ type Props = {
 };
 
 export default function CatelogCard({ position, itemData, type }: Props) {
-  const { title, artist_name, imageSrc, release_date, album_name } = itemData;
+  const { id, title, artist_name, imageSrc, release_date, album_name } = itemData;
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const { removeFromList, setRemovingFromList } = useGlobalContext();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRemoved, setIsRemoved] = useState<boolean>(false);
 
-  const handleSubtractClick = () => {
-    
+  const handleSubtractClick = async () => {
+    setIsLoading(true);
+    setRemovingFromList(true);
+    const removed = removeFromList(type, id);
+    setIsRemoved(removed);
+    setRemovingFromList(false);
+    setIsLoading(false);
   };
 
   return (

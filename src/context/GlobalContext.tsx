@@ -29,6 +29,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
   const [isAlreadyInList, setIsAlreadyInList] = useState<boolean>(false);
   const [errorFetching, setErrorFetching] = useState<boolean>(false);
   const [addingToList, setAddingToList] = useState<boolean>(false);
+  const [removingFromList, setRemovingFromList] = useState<boolean>(false);
   const [isNotificationVisible, setIsNotificationVisible] = useState<boolean>(false);
 
   // Update each individual state to local storage
@@ -113,10 +114,28 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     setErrorFetching(false);
   };
 
-  const removeFromList = (() => {
-    if (isNotificationVisible) {
-      return
+  const removeFromList = ((type: string, id: number): boolean => {
+    if (isNotificationVisible) return false;
+
+    let list: CatelogItem[], setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>
+    // Filter what type the item is and what list it belong to
+    if (type === 'artist') {
+      list = topArtists;
+      setList = setTopArtists;
+    } else if (type === 'album') {
+      list = topAlbums;
+      setList = setTopAlbums;
+    } else if (type === 'track') {
+      list = topTracks;
+      setList = setTopTracks;
+    } else {
+      return false;
     };
+
+    const updatedArray = list.filter(item => item.id !== id);
+    setList(updatedArray);
+
+    return true;
   });
 
   return <GlobalContext.Provider value={{
@@ -131,6 +150,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     isNotificationVisible,
     removeFromList,
     setAddingToList,
+    setRemovingFromList,
     setUserName,
     addToList,
     closeNotification,

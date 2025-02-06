@@ -262,8 +262,9 @@ export type GlobalState = {
   errorFetching: boolean;
   closeNotification: () => void;
   setUserName: (userName: string) => void;
-  setAddingToList: Dispatch<SetStateAction<boolean>>
+  setAddingToList: Dispatch<SetStateAction<boolean>>;
+  setRemovingFromList: Dispatch<SetStateAction<boolean>>;
   addToList: (type: string, item: CatelogItem) => boolean;
-  removeFromList: (type: string, id: string) => void;
+  removeFromList: (type: string, id: number) => boolean;
   reorderList?: (type: string, newList: string[]) => void;
 };

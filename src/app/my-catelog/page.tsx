@@ -37,8 +37,8 @@ export default function MyCatelog() {
       </div>
       <div className='flex flex-col gap-5'>
         <CatelogGrid title='My Top Tracks' type='track' data={topTracks}/>
-        <CatelogGrid title='My Top Albums' type='albums' data={topAlbums}/>
-        <CatelogGrid title='My Top Artists' type='artists' data={topArtists}/>
+        <CatelogGrid title='My Top Albums' type='album' data={topAlbums}/>
+        <CatelogGrid title='My Top Artists' type='artist' data={topArtists}/>
       </div>
     </main>
   )

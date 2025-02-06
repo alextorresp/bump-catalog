@@ -12,7 +12,6 @@ type SubtractFromListButton = {
 };
 
 export default function SubtractFromListButton({ onClick, isSubtracted, isLoading }: SubtractFromListButton) {
-  const { addingToList } = useGlobalContext();
 
   return (
     <button
