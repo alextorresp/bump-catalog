@@ -138,6 +138,26 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     return true;
   });
 
+  const updateList = ((type: string, updatedList: CatelogItem[]) => {
+    if (isNotificationVisible) return false;
+
+    let setList: React.Dispatch<React.SetStateAction<CatelogItem[]>>
+    // Filter what type the item is and what list it belong to
+    if (type === 'artist') {
+      setList = setTopArtists;
+    } else if (type === 'album') {
+      setList = setTopAlbums;
+    } else if (type === 'track') {
+      setList = setTopTracks;
+    } else {
+      return false;
+    };
+
+    setList(updatedList);
+
+    return true;
+  });
+
   return <GlobalContext.Provider value={{
     userName,
     topArtists,
@@ -149,6 +169,7 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
     errorFetching,
     isNotificationVisible,
     removeFromList,
+    updateList,
     setAddingToList,
     setRemovingFromList,
     setUserName,

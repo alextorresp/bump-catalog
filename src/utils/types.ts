@@ -265,6 +265,7 @@ export type GlobalState = {
   setAddingToList: Dispatch<SetStateAction<boolean>>;
   setRemovingFromList: Dispatch<SetStateAction<boolean>>;
   addToList: (type: string, item: CatelogItem) => boolean;
+  updateList: (type: string, updatedList: CatelogItem[]) => boolean;
   removeFromList: (type: string, id: number) => boolean;
   reorderList?: (type: string, newList: string[]) => void;
 };
