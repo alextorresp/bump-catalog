@@ -83,7 +83,11 @@ export default function CatelogGrid({ title, data, type }: Props) {
         }
 
       {data.length >= 2 &&
-        <Button variant={'solid'} size={'standard'}>Reorder Items!</Button>
+      (
+        <Link href={`/reorder-items?type=${type}`} className='z-10'>
+          <Button variant={'solid'} size={'standard'}>Reorder Items!</Button>
+        </Link>
+      )
       }
       </div>
   </div>
