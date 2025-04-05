@@ -81,3 +81,8 @@ p, .responsive-text, ::placeholder, button {
 }
 
 
+.reorder-number {
+  font-size: clamp(50px, 1.5vw, 80px) !important;
+}
+
+
