@@ -34,10 +34,7 @@ export default function ReorderItems() {
         <h3 className='mb-1 text-center text-white border border-white border-dashed rounded-md px-2 py-6'>Reorder your top {type}s</h3>
         {list && list.map((item, index) => {
           return (
-          <div className='flex flex-row rounded-sm bg-slate-50 overflow-hidden px-4 py-3 items-center gap-4'>
-            <p className='reorder-number lg:text-3xl md:text-xl text-lg font-bold text-black'>{index + 1}</p>
-            <ReorderCard item={item}></ReorderCard>
-          </div>
+          <ReorderCard item={item} index={index}></ReorderCard>
         )
         })}
       </div>
